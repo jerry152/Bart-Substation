@@ -10,3 +10,8 @@ document.getElementById("update").onclick = function() {
 document.getElementById("error").onclick = function() {
     exception_logging("242-0", "Trip", "Failure....");
 }
+
+document.getElementById("cmdbtn").onclick = function() {
+    var cmd = document.getElementById("cmdInput").value;
+    filter(cmd);
+}
