@@ -1,8 +1,6 @@
 var canvasWidth = 500;
 var canvasHeight = 500;
 
-var x = 0;
-var y = 0;
 
 var srcx;
 var srcy;
@@ -18,8 +16,10 @@ var height = sheetHeight;
 var currentframe = 0;
 
 var character = new Image();
-character.src = "selector.png";
+character.src = "lockout.png";
 
+var character2 = new Image();
+character2.src = "selector.png";
 
 var canvas = document.getElementById('canvas');
 canvas.width = canvasWidth;
@@ -32,12 +32,15 @@ function updateFrame(){
     srcx = currentFrame * width;
     srcy = 0;
 
-    ctx.clearRect(x,y, width, height);
+    ctx.clearRect(0,0, width, height);
+    ctx.clearRect(300,0, width, height);
 }
 
 function drawImage(){
     updateFrame();
-    ctx.drawImage(character,srcx,srcy, width, height, x, y, width, height);
+    ctx.drawImage(character,srcx,srcy, width, height, 0, 0, width, height);
+    ctx.drawImage(character2,srcx,srcy, width, height, 300, 0, width, height);
+
 }
 
 
