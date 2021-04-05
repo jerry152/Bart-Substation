@@ -29,6 +29,12 @@ class AC_Breaker {
         this.max_kV = 38;
         this.frequency = 60;
     }
+    get_input_Voltage(){
+        return this.input_kV;
+    }
+    get_frquency() {
+        return this.frequency;
+    }
 }
 
 
@@ -43,9 +49,10 @@ class Selector_Switch {
 
 //=======================================================================================
 //Control Switch: 
-class Control_Switch {
+class Control_Switch extends AC_Breaker {
 
     constructor(state) {
+        super();
         this.state = state;
     }
 
@@ -61,8 +68,7 @@ class Breaker_243 extends Control_Switch {
         super( state == "OPENED" );
     }
     test() {
-        var text = this.get_state();
-        console.log(text);
+        var text = this.get_frquency();
         alert( text );
     }
 }
