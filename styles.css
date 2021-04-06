@@ -1,19 +1,18 @@
+.accordion-body{
+  background-color: #e3f2fd
+}
+.accordion-header{
+  background-color: #e3f2fd
+}
 body {
-    background-color: #97CAEF;
     font-family: Helvetica, sans-serif;
   }
-  h1 {
-    color: black;
-  }
-  h2 {
-    color: grey;
-  }
-  p {
-    color: grey;
-  }
-  .square{
-      background: #000;
-  }
-  .square h1 {
-      color: white;
-  }
+h1 {
+  color: black;
+}
+h2 {
+  color: grey;
+}
+p {
+  color: black;
+}
