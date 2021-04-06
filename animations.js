@@ -1,3 +1,4 @@
+
 var canvasWidth = 500;
 var canvasHeight = 500;
 
@@ -47,5 +48,6 @@ function drawImage(){
 setInterval(function(){
     drawImage();
 }, 200);
+
 
 
