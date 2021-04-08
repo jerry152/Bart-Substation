@@ -1,12 +1,12 @@
-var canvasWidth = 500;
-var canvasHeight = 500;
+var canvasWidth = 1500;
+var canvasHeight = 1500;
 
 var srcx;
 var srcx2;
 var srcy;
 
-var sheetWidth = 300;
-var sheetHeight = 150;
+var sheetWidth = 697;
+var sheetHeight = 353;
 
 var cols = 2;
 var cols2 = 3;
@@ -43,18 +43,18 @@ function updateFrame(){
 
     ctx.clearRect(0,0, width, height);
     ctx.clearRect(300,0, width, height);
-    ctx.clearRect(150,150, 347, 364);
+    ctx.clearRect(150,150, 343, 364);
 }
 function display(){
     ctx.drawImage(character,0,0, width, height, 0, 0, width, height);
     ctx.drawImage(character2,0,0, width, height, 300, 0, width, height);
-    ctx.drawImage(character3,0,0, 347, 364, 150, 150, 347, 364);
+    ctx.drawImage(character3,0,0, 343, 364, 150, 150, 343, 364);
 }
 function drawImage(){
     updateFrame();
     ctx.drawImage(character,srcx,srcy, width, height, 0, 0, width, height);
     ctx.drawImage(character2,srcx,srcy, width, height, 300, 0, width, height);
-    ctx.drawImage(character3,srcx2,0, 347, 364, 150, 150, 347, 364);
+    ctx.drawImage(character3,srcx2,0, 343, 364, 150, 150, 343, 364);
 
 }
 setTimeout(display,0);
