@@ -37,7 +37,7 @@ function updateFrame(){
     currentframe2 = ++currentframe2 % cols2;
 
     srcx = currentFrame * width;
-    srcx2 = currentframe2 * 347;
+    srcx2 = currentframe2 * 344;
 
     srcy = 0;
 
