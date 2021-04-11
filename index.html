@@ -65,19 +65,14 @@
         <!--Map-->
         <div class="row">
             <div class="col-lg-6">
-                <canvas id='canvas'><a></canvas>
+                <canvas id='canvas' onclick=getCoor(event)><a></canvas>
+                <!--Any click on the canvas send coordinates to getCoor()-->
                 <script src="animations.js"></script>
             </div>
-            <button type = button class="btn btn-primary btn-lg" onclick="drawImageLeftLockout()">Lockout Relay 1</button>
-            <button type = button class="btn btn-primary btn-lg" onclick="drawImageRightLockout()">Lockout Relay 2</button>
-            <button type = button class="btn btn-primary btn-lg" onclick="drawImageSelector()">Selector</button>
-            <button type = button class="btn btn-primary btn-lg" onclick="drawImageControlSwitch1()">ControlSwitch1</button>
-            <button type = button class="btn btn-primary btn-lg" onclick="drawImageControlSwitch2()">ControlSwitch2</button>
-            <button type = button class="btn btn-primary btn-lg" onclick="drawImageControlSwitch3()">ControlSwitch3</button>
-
-
             </div>
             <div class="col-lg-6">
+                    <!--Alertbutton-->
+                <button type="button" id=alertbutton class="btn btn-primary btn-lg">Alert HMI</button>
                 <!--ACCORDION-->
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item" >
@@ -132,11 +127,6 @@
             </div>
         </div>
     </div>
-
-    <!--Alertbutton-->
-    <button type="button" id=alertbutton class="btn btn-primary btn-lg">Alert</button>
-
-
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="alarmsHistory.js"></script>
     <script type="text/javascript" src="co2.js"></script>
