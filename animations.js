@@ -1,17 +1,31 @@
+let b_252_1 = new Breaker_252("CLOSED" , 1);
+let b_252_2 = new Breaker_252("CLOSED" , 2);
+let b_252_8 = new Breaker_252("CLOSED" , 8);
 
-document.getElementById("input").onclick = function() {
-    input_logging("User", "Trip", "242-0");
-}
+let SS = new Selector_Switch(false);
 
-document.getElementById("update").onclick = function() {
-    update_logging("242-0", "Trip");
-}
+//let LR = new Lockout_Relay();
 
-document.getElementById("error").onclick = function() {
-    exception_logging("242-0", "Trip", "Failure....");
-}
 
-document.getElementById("cmdbtn").onclick = function() {
-    var cmd = document.getElementById("cmdInput").value;
-    filter(cmd);
+//=======================================================================================
+document.getElementById("252-1-close").onclick = function() {
+    b_252_1.update(SS.getState, false);
 }
+document.getElementById("252-1-open").onclick = function() {
+    b_252_1.update(SS.getState, true);
+}
+//=======================================================================================
+document.getElementById("252-2-close").onclick = function() {
+    b_252_2.update(SS.getState, false);
+}
+document.getElementById("252-2-open").onclick = function() {
+    b_252_2.update(SS.getState, true);
+}
+//=======================================================================================
+document.getElementById("252-8-close").onclick = function() {
+    b_252_8.update(SS.getState, false);
+}
+document.getElementById("252-8-open").onclick = function() {
+    b_252_8.update(SS.getState, true);
+}
+//=======================================================================================

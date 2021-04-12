@@ -1,7 +1,7 @@
 // Things to consider
 
 function input_logging(who, action, component) {
-    var text = who + " requests " + action + " command on " + component + " at " + String(0)
+    var text = who + " requests " + action + " command on " + component + " at " + String(0);
     alert(text);
 }
 
