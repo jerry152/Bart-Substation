@@ -1,4 +1,4 @@
-let b_252_1 = new Breaker_252("CLOSED" , 1);
+/*let b_252_1 = new Breaker_252("CLOSED" , 1);
 let b_252_2 = new Breaker_252("CLOSED" , 2);
 let b_252_8 = new Breaker_252("CLOSED" , 8);
 
@@ -26,7 +26,7 @@ document.getElementById("252-8-close").onclick = function() {
 }
 document.getElementById("252-8-open").onclick = function() {
     b_252_8.update(SS.getState, true);
-}
+}*/
 
 //changable size of canvas
 var canvasWidth = 1000;
