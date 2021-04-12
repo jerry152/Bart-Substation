@@ -134,7 +134,7 @@ function drawImageSelector(){
 
 function updateFrameControlSwitch1(xcoor){
     ctx.clearRect(controlSwitch1X,controlSwitch1Y, width, height);
-    if (xcoor > (controlSwitch1X + (widthCS / 2)))
+    if (xcoor < (controlSwitch1X + (widthCS / 2)))
     {
         
         ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, widthCS, heightCS);
@@ -154,7 +154,7 @@ ctx.drawImage(character3,141,0, widthCS, heightCS, controlSwitch1X, controlSwitc
 }
 function updateFrameControlSwitch2(xcoor){
     ctx.clearRect(controlSwitch2X,controlSwitch2Y, width, height);
-    if (xcoor > (controlSwitch2X + (widthCS / 2)))
+    if (xcoor < (controlSwitch2X + (widthCS / 2)))
     {
         
         ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, widthCS, heightCS);
@@ -172,7 +172,7 @@ ctx.drawImage(character3,141,0, widthCS, heightCS, controlSwitch2X, controlSwitc
 }
 function updateFrameControlSwitch3(xcoor){
     ctx.clearRect(controlSwitch3X,controlSwitch3Y, width, height);
-    if (xcoor > (controlSwitch3X + (widthCS / 2)))
+    if (xcoor < (controlSwitch3X + (widthCS / 2)))
     {
         
         ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, widthCS, heightCS);
