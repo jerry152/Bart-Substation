@@ -29,8 +29,13 @@ document.getElementById("252-8-open").onclick = function() {
 }*/
 
 //changable size of canvas
+<<<<<<< HEAD
 var canvasWidth = 1000;
 var canvasHeight = 600;
+=======
+var canvasWidth = 500;
+var canvasHeight = 250;
+>>>>>>> 3d86c64116aa9b437e9705d6fe5bb76bdf5e9e15
 
 var srcxControlSwitch1;
 var srcxControlSwitch2;
@@ -44,12 +49,12 @@ var srcxSelector;
 var srcxOrangeLight;
 
 //2frame sheet
-var sheetWidth1 = 300;
-var sheetHeight1 = 150;
+var sheetWidth1 = 150;
+var sheetHeight1 = 75;
 
 //3frame sheet
-var sheetWidth2 = 424;
-var sheetHeight2 = 150;
+var sheetWidth2 = 212;
+var sheetHeight2 = 75;
 
 var buttonWidth = 60;
 var buttonHeight = 36;
@@ -74,10 +79,10 @@ var currentframe4 = 1;
 
 var character = new Image();
 character.src = "lockout.png";
-
+character.style.width = "100%";
 var character2 = new Image();
 character2.src = "selector.png";
-
+character2.style.width = "100%";
 var character3 = new Image();
 character3.src = "controlSwitch.png";
 
@@ -93,13 +98,25 @@ var lockout2PosY = 150;
 var selectorPosX = 0;
 var selectorPosY = 50;
 var controlSwitch1X = 250;
+character3.style.width = "100%";
+//changable locations of sprites
+
+var lockout1PosX = 0;
+var lockout1PosY = 75;
+var lockout2PosX = 400;
+var lockout2PosY = 75;
+var selectorPosX = 0;
+var selectorPosY = 0;
+var controlSwitch1X = 125;
 var controlSwitch1Y = 0;
-var controlSwitch2X = 550;
+var controlSwitch2X = 275;
 var controlSwitch2Y = 0;
 var controlSwitch3X = 400;
 var controlSwitch3Y = 150;
 var orangeLight1X = 10;
 var orangeLight1Y = 10;
+var controlSwitch3X = 200;
+var controlSwitch3Y = 75;
 
 var canvas = document.getElementById('canvas');
 canvas.width = canvasWidth;
