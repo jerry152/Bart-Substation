@@ -53,8 +53,8 @@ var sheetHeight1 = 75;
 var sheetWidth2 = 212;
 var sheetHeight2 = 75;
 
-var buttonWidth = 60;
-var buttonHeight = 36;
+var buttonWidth = 30;
+var buttonHeight = 18;
 
 var cols = 2;
 var cols2 = 3;
@@ -76,10 +76,10 @@ var currentframe4 = 1;
 
 var character = new Image();
 character.src = "lockout.png";
-
+character.style.width = "100%";
 var character2 = new Image();
 character2.src = "selector.png";
-
+character2.style.width = "100%";
 var character3 = new Image();
 character3.src = "controlSwitch.png";
 
@@ -89,23 +89,29 @@ character4.src =  "orangeLight.png";
 //changable locations of sprites
 
 var lockout1PosX = 0;
-var lockout1PosY = 75;
+var lockout1PosY = 250;
+var lockout2PosX = 800;
+var lockout2PosY = 150;
+var selectorPosX = 0;
+var selectorPosY = 50;
+var controlSwitch1X = 250;
+character3.style.width = "100%";
+//changable locations of sprites
+
+var lockout1PosX = 0;
+var lockout1PosY = 115;
 var lockout2PosX = 400;
 var lockout2PosY = 75;
 var selectorPosX = 0;
-var selectorPosY = 0;
+var selectorPosY = 30;
 var controlSwitch1X = 125;
 var controlSwitch1Y = 0;
 var controlSwitch2X = 275;
 var controlSwitch2Y = 0;
-var controlSwitch3X = 400;
-var controlSwitch3Y = 150;
 var orangeLight1X = 10;
 var orangeLight1Y = 10;
 var controlSwitch3X = 200;
 var controlSwitch3Y = 75;
-
-var neutralWidthPosCS = sheetWidth2 / 3;
 
 var canvas = document.getElementById('canvas');
 canvas.width = canvasWidth;
@@ -117,9 +123,9 @@ function display(){
     ctx.drawImage(character,0,0, width, height, lockout1PosX, lockout1PosY, width, height);//lockout1
     ctx.drawImage(character,0,0, width, height, lockout2PosX, lockout2PosY, width, height);//lockout2
     ctx.drawImage(character2,0,0, width, height, selectorPosX, selectorPosY, width, height);//selector
-    ctx.drawImage(character3,neutralWidthPosCS,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, widthCS, heightCS);//control switches
-    ctx.drawImage(character3,neutralWidthPosCS,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, widthCS, heightCS);
-    ctx.drawImage(character3,neutralWidthPosCS,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, widthCS, heightCS);
+    ctx.drawImage(character3,141,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, widthCS, heightCS);//control switches
+    ctx.drawImage(character3,141,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, widthCS, heightCS);
+    ctx.drawImage(character3,141,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, widthCS, heightCS);
     ctx.drawImage(character4,30,0, widthB, heightB, orangeLight1X, orangeLight1Y, widthB, heightB);
 }
 
@@ -172,7 +178,7 @@ function updateFrameControlSwitch1(xcoor){
     else
     {
         
-        ctx.drawImage(character3,neutralWidthPosCS * 2,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, widthCS, heightCS); 
+        ctx.drawImage(character3,282,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, widthCS, heightCS); 
     }
 
 }
@@ -180,7 +186,7 @@ function drawImageControlSwitch1(xcoor){
     
     updateFrameControlSwitch1(xcoor);
     setTimeout(function flicker(){
-ctx.drawImage(character3,neutralWidthPosCS,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, widthCS, heightCS);},500);
+ctx.drawImage(character3,141,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, widthCS, heightCS);},500);
 }
 function updateFrameControlSwitch2(xcoor){
     ctx.clearRect(controlSwitch2X,controlSwitch2Y, width, height);
@@ -192,13 +198,13 @@ function updateFrameControlSwitch2(xcoor){
     else
     {
         
-        ctx.drawImage(character3,neutralWidthPosCS * 2,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, widthCS, heightCS); 
+        ctx.drawImage(character3,282,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, widthCS, heightCS); 
     }
 }
 function drawImageControlSwitch2(xcoor){
     updateFrameControlSwitch2(xcoor);
     setTimeout(function flicker(){
-ctx.drawImage(character3,neutralWidthPosCS,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, widthCS, heightCS);},500);
+ctx.drawImage(character3,141,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, widthCS, heightCS);},500);
 }
 function updateFrameControlSwitch3(xcoor){
     ctx.clearRect(controlSwitch3X,controlSwitch3Y, width, height);
@@ -210,13 +216,13 @@ function updateFrameControlSwitch3(xcoor){
     else
     {
         
-        ctx.drawImage(character3,neutralWidthPosCS * 2,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, widthCS, heightCS); 
+        ctx.drawImage(character3,282,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, widthCS, heightCS); 
     }
 }
 function drawImageControlSwitch3(xcoor){
     updateFrameControlSwitch3(xcoor);
     setTimeout(function flicker(){
-ctx.drawImage(character3,neutralWidthPosCS,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, widthCS, heightCS);},500);
+ctx.drawImage(character3,141,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, widthCS, heightCS);},500);
 }
 
 function getCoor(event) {
