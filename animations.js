@@ -29,8 +29,10 @@ document.getElementById("252-8-open").onclick = function() {
 }*/
 
 //changable size of canvas
+
 var canvasWidth = 500;
 var canvasHeight = 250;
+
 
 var srcxControlSwitch1;
 var srcxControlSwitch2;
@@ -41,6 +43,8 @@ var srcxLockoutRelay2;
 
 var srcxSelector;
 
+var srcxOrangeLight;
+
 //2frame sheet
 var sheetWidth1 = 150;
 var sheetHeight1 = 75;
@@ -48,6 +52,9 @@ var sheetHeight1 = 75;
 //3frame sheet
 var sheetWidth2 = 212;
 var sheetHeight2 = 75;
+
+var buttonWidth = 60;
+var buttonHeight = 36;
 
 var cols = 2;
 var cols2 = 3;
@@ -58,23 +65,27 @@ var height = sheetHeight1;
 var widthCS = sheetWidth2 / cols2;
 var heightCS = sheetHeight2;
 
+var widthB = buttonWidth / cols;
+var heightB = buttonHeight;
+
 //cycles through frames
 var currentframe1 = 0;
 var currentframe2 = 0;
 var currentframe3 = 0;
+var currentframe4 = 1;
 
 var character = new Image();
 character.src = "lockout.png";
-character.style.width = "100%";
-character.style.position = "absolute";
+
 var character2 = new Image();
 character2.src = "selector.png";
-character2.style.width = "100%";
-character.style.position = "absolute";
+
 var character3 = new Image();
 character3.src = "controlSwitch.png";
-character3.style.width = "100%";
-character.style.position = "absolute";
+
+var character4 = new Image();
+character4.src =  "orangeLight.png";
+
 //changable locations of sprites
 
 var lockout1PosX = 0;
@@ -87,6 +98,10 @@ var controlSwitch1X = 125;
 var controlSwitch1Y = 0;
 var controlSwitch2X = 275;
 var controlSwitch2Y = 0;
+var controlSwitch3X = 400;
+var controlSwitch3Y = 150;
+var orangeLight1X = 10;
+var orangeLight1Y = 10;
 var controlSwitch3X = 200;
 var controlSwitch3Y = 75;
 
@@ -105,6 +120,7 @@ function display(){
     ctx.drawImage(character3,neutralWidthPosCS,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, widthCS, heightCS);//control switches
     ctx.drawImage(character3,neutralWidthPosCS,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, widthCS, heightCS);
     ctx.drawImage(character3,neutralWidthPosCS,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, widthCS, heightCS);
+    ctx.drawImage(character4,30,0, widthB, heightB, orangeLight1X, orangeLight1Y, widthB, heightB);
 }
 
 function updateFrameLeftLockout(){
@@ -134,6 +150,15 @@ function updateFrameSelector(){
 function drawImageSelector(){
     updateFrameSelector();
     ctx.drawImage(character2,srcxSelector,0, width, height, selectorPosX, selectorPosY, width, height);
+}
+function updateButton(){
+    currentFrame4 = ++currentframe4 % cols;
+    srcxOrangeLight = currentFrame4 * widthB;
+    ctx.clearRect(orangeLight1X,orangeLight1Y,widthB, heightB);
+}
+function drawButton(){
+    updateButton();
+    ctx.drawImage(character4,srcxOrangeLight,0, widthB, heightB, orangeLight1X, orangeLight1Y, widthB, heightB);
 }
 
 
@@ -202,6 +227,7 @@ function getCoor(event) {
     if ((x > selectorPosX && x < selectorPosX + width)&& (y > selectorPosY && y < selectorPosY + height))
     {
         drawImageSelector();
+        drawButton();
     }
     else if ((x > lockout1PosX && x < lockout1PosX + width) && (y > lockout1PosY && y < lockout1PosY + height))
     {
