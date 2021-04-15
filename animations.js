@@ -45,6 +45,8 @@ var srcxSelector;
 
 var srcxOrangeLight;
 
+var srcxRedLight;
+
 //2frame sheet
 var sheetWidth1;
 var sheetHeight1;
@@ -73,6 +75,7 @@ var currentframe1 = 0;
 var currentframe2 = 0;
 var currentframe3 = 0;
 var currentframe4 = 1;
+var currentframe5 = 1;
 
 var character = new Image();
 character.src = "lockout.png";
@@ -89,6 +92,9 @@ sheetHeight2 = character3.naturalHeight;
 
 var character4 = new Image();
 character4.src =  "orangeLight.png";
+//red light 
+var character5 = new Image();
+character5.src = "redLight.png";
 
 //changable locations of sprites
 
@@ -103,7 +109,7 @@ character3.style.width = "100%";
 //changable locations of sprites
 
 var lockout1PosX = 0;
-var lockout1PosY = 115;
+var lockout1PosY = 135;
 var lockout2PosX = 400;
 var lockout2PosY = 75;
 var selectorPosX = 0;
@@ -114,8 +120,13 @@ var controlSwitch2X = 275;
 var controlSwitch2Y = 0;
 var orangeLight1X = 0;
 var orangeLight1Y = 10;
+var orangeLight2X = 0;
+var orangeLight2Y = 115
 var controlSwitch3X = 200;
 var controlSwitch3Y = 75;
+
+var redLight1X = 0; // x position
+var redLight1Y = 15; //y position
 
 var canvas = document.getElementById('canvas');
 canvas.width = canvasWidth;
@@ -131,8 +142,10 @@ function display(){
     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, widthCS, heightCS);
     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, widthCS, heightCS);
     ctx.drawImage(character4,30,0, widthB, heightB, orangeLight1X, orangeLight1Y, widthB, heightB);//lights
+    ctx.drawImage(character4,30,0, widthB, heightB, orangeLight2X, orangeLight2Y, widthB, heightB);hello
+    ctx.drawImage(character5,30,0, widthB, heightB, redLight1X, redLight1Y, widthB, heightB); //3 of these 
 }
-
+I
 function updateFrameLeftLockout(){
     currentFrame1 = ++currentframe1 % cols;
     srcxLockoutRelay1 = currentFrame1 * width;
@@ -232,7 +245,7 @@ ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, co
 function getCoor(event) {
     var x = event.offsetX;
     var y = event.offsetY;
-
+    //ask fernando about this 
     console.log("x: " + x + " y: " + y);
     if ((x > selectorPosX && x < selectorPosX + width)&& (y > selectorPosY && y < selectorPosY + height))
     {
