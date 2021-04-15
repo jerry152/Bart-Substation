@@ -142,10 +142,10 @@ function display(){
     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, widthCS, heightCS);
     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, widthCS, heightCS);
     ctx.drawImage(character4,30,0, widthB, heightB, orangeLight1X, orangeLight1Y, widthB, heightB);//lights
-    ctx.drawImage(character4,30,0, widthB, heightB, orangeLight2X, orangeLight2Y, widthB, heightB);hello
+    ctx.drawImage(character4,30,0, widthB, heightB, orangeLight2X, orangeLight2Y, widthB, heightB);
     ctx.drawImage(character5,30,0, widthB, heightB, redLight1X, redLight1Y, widthB, heightB); //3 of these 
 }
-I
+
 function updateFrameLeftLockout(){
     currentFrame1 = ++currentframe1 % cols;
     srcxLockoutRelay1 = currentFrame1 * width;
