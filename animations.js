@@ -106,10 +106,14 @@ var character4 = new Image();
 character4.src =  "orangeLight.png";
 buttonWidth = character4.naturalWidth;
 buttonHeight = character4.naturalHeight;
-
 //red light 
 var character5 = new Image();
 character5.src = "redLight.png";
+buttonWidth = character5.naturalWidth;
+buttonHeight = character5.naturalHeight;
+//blue light
+var character6 = new Image();
+character6.src = "blueLight.png";
 
 //blue light
 var character6 = new Image();
