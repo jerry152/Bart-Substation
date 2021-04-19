@@ -1,9 +1,6 @@
-/*let b_252_1 = new Breaker_252("CLOSED" , 1);
-let b_252_2 = new Breaker_252("CLOSED" , 2);
-let b_252_8 = new Breaker_252("CLOSED" , 8);
 
-let SS = new Selector_Switch(false);
 
+/*
 //let LR = new Lockout_Relay();
 
 
@@ -442,15 +439,6 @@ function getCoor(event) {
         drawImageControlSwitch3(x);
     }
 }
-setTimeout(display,0);
 
-var render = function(){
-    if (document.documentElement.clientWidth < 1000)
-    {
-        canvas.width = document.documentElement.clientWidth;
-    }
 
-};
-
-window.addEventListener("resize", render);
 

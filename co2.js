@@ -37,23 +37,17 @@ class AC_Properties {
     constructor() {
         this.input_kV = 34.5;
         this.max_kV = 38;
-        this.frequency = 60;
     }
     //Getters ================================
     get_Input_Voltage(){
         return this.input_kV;
     }
-    get_frequency() {
-        return this.frequency;
-    }
+
     get_max_Voltage(){
         return this.max_kV;
     }
     
     //Setters ================================
-    set_frequency(frequency){
-        this.frequency = frequency;
-    }
     set_input_Volatage(input){
         this.input_kV = input;
     }
@@ -119,11 +113,14 @@ class Control_Switch extends AC_Properties {
 
     trip() {
         this.state = true;
+        set_Output_Voltage( get_Input_Voltage() );
     }
 
     close() {
         this.state = false;
+        set_Output_Voltage(0);
     }
+    
 
     update( SelectorState, state ) {
         if( SelectorState ) {
@@ -133,6 +130,16 @@ class Control_Switch extends AC_Properties {
         else {
 
             alert( "Local!" );
+
+            //managed to update
+
+            //Backcode do updates
+            if(state) { //open
+                
+            }
+
+            //Frontend methods to update
+
 
         }
     }
@@ -145,9 +152,7 @@ class Breaker_252 extends Control_Switch {
     }
 
     test() {
-        this.set_frequency(55);
-        var text = this.get_frequency();
-        alert( text );
+        alert( "test" );
     }
 }
 
@@ -165,6 +170,17 @@ class Lockout_Relay {
     getBreaker(){
         return this.state;
     }
+
+    getStateName() {
+        if( this.state )
+            //return "RELAY TRIPPED";
+            return this.trip();
+        else 
+           // return "RESETED";
+           return this.reset();
+    }
+
+
 
     //Setters ================================
     setState(state) {
@@ -191,9 +207,24 @@ class Lockout_Relay {
 
     }
 
+    trip(){
+        this.state = true;
+
+    }
+
+    close(){
+        this.state = false;
+    }
+
+
+
 
 
 }
+
+
+
+
 //=======================================================================================
 
 
