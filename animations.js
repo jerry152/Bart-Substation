@@ -293,8 +293,7 @@ function drawImageRightLockout(){
 function updateFrameSelector(){
     currentFrame3 = ++currentframe3 % cols;
     srcxSelector = currentFrame3 * width;
-    c
-    tx.clearRect(selectorPosX,selectorPosY, scaleWidth, scaleHeight);
+    ctx.clearRect(selectorPosX,selectorPosY, scaleWidth, scaleHeight);
 }
 function drawImageSelector(){
     updateFrameSelector();
