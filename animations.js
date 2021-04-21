@@ -293,8 +293,7 @@ function drawImageRightLockout(){
 function updateFrameSelector(){
     currentFrame3 = ++currentframe3 % cols;
     srcxSelector = currentFrame3 * width;
-    c
-    tx.clearRect(selectorPosX,selectorPosY, scaleWidth, scaleHeight);
+    tx.clearRect(selectorPosX,selectorPosY, scaleWidth, scaleHeight); /// error testing in back end
 }
 function drawImageSelector(){
     updateFrameSelector();
@@ -461,10 +460,15 @@ function updateFrameControlSwitch(xcoor,name){
             if (xcoor < (controlSwitch1X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch1");
+                //alert("Open CS1");
+                b_252_1.set_Input_Volatage(40); //Scenario of Overcurrent
+                b_252_1.update(SS.getState(), true);
             }
             else
             {
                 closeSwitch("CSswitch1");
+                //alert("Close CS1");
+                b_252_1.update(SS.getState(), false);
             }
             break;
         
@@ -473,10 +477,15 @@ function updateFrameControlSwitch(xcoor,name){
             if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch2");
+                //alert("Open CS2");
+                b_252_2.set_Input_Volatage(20);
+                b_252_2.update(SS.getState(), true);
             }
             else
             {
                 closeSwitch("CSswitch2");
+                //alert("Close CS2");
+                b_252_2.update(SS.getState(), false);
             }
             break;
 
@@ -485,10 +494,14 @@ function updateFrameControlSwitch(xcoor,name){
             if (xcoor < (controlSwitch3X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch3");
+                //alert("Open CS8")
+                b_252_8.update(SS.getState(), true);
             }
             else
             {
                 closeSwitch("CSswitch3");
+                //alert("Close CS8");
+                b_252_8.update(SS.getState(), false);
             }
             break;
     }
@@ -584,18 +597,21 @@ function getCoor(event) {
         //if selector sprite is clicked on
         drawImageSelector();
         drawLight("orange1");
+        
     }
     else if ((x > lockout1PosX && x < lockout1PosX + scaleWidth) && (y > lockout1PosY && y < lockout1PosY + scaleHeight))
     {
         //if left lock sprite is clicked on
         drawImageLeftLockout();
         drawLight("orange2");
+        alert("Left Lockout");
     }
     else if ((x > lockout2PosX && x < lockout2PosX + scaleWidth) && (y > lockout2PosY && y < lockout2PosY + scaleHeight))
     {
         //if right lock sprite is clicked on
         drawImageRightLockout();
         drawLight("orange3");
+        alert("Right Lockout");
     }
     else if ((x > controlSwitch1X && x < controlSwitch1X + scaleWidthCS) && (y > controlSwitch1Y && y < controlSwitch1Y + scaleHeightCS))
     {
