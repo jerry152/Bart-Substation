@@ -2,6 +2,8 @@
 
 // V_252_01_CLOSE_CMD
 
+
+
 function filter(cmd) {
     var details = cmd.split("_");
     // Go to the detials, run the command
@@ -145,14 +147,25 @@ class Control_Switch extends AC_Properties {
                 // check input/output to see if there is an over/under currents
                 this.trip();
 
-                if( get_ou )
+                if( get_Output_Voltage() > get_Max_Voltage() ) {
+                    // We have an over current
+                    alert("Overcurrent reading on " + String(this.num));
 
-                // Once 
+
+
+                } else {
+                    if( get_Output_Voltage() < 30 ) { // Temp Undercurrent Value
+                        // We have an over current Undercurrent
+                        alert("Undercurrent!")
+                    }
+                }
             } else {
+                // State change 
                 this.close();
             }
+            //Send Updates to adjacent modules
 
-            //Frontend methods to send update
+            //Frontend methods to send 
             
 
 
@@ -238,8 +251,78 @@ class Lockout_Relay {
 }
 
 
+class Lockout_286_1 extends Lockout_Relay{
+    constructor(breaker,number,state){
+        this.breaker = breaker;
+        this.number = number;
+        this.state = state;
+    }
 
+    getState(){
+        if(this.state){
+            alert("Lockout 286_1 Opened")
+        }
+        else{
+            alert("186 Relay is not open!")
+        }
+
+    }
+    getBreaker(){
+        if(this.breaker == "H1" && this.breaker == "H8" && this.breaker != "H2"){
+            return this.state = true;
+        }
+        else{
+            return this.state = false;
+        }
+
+
+    }
+
+    
+
+    
+
+
+
+
+}
+
+
+class Lockout_286_2 extends Lockout_Relay{
+
+    constructor(breaker,state){
+        this.breaker = breaker;
+        this.state = state;
+    }
+
+    getState(){
+        if(this.state){
+            alert("Lockout 286_2 Opened");
+        }
+        else{
+            alert("186 Relay is not open")
+        }
+    }
+    
+    getBreaker(){
+        if(this.breaker == "H2" && this.breaker == "H8" && this.breaker != "H1"){
+            return this.state = true;
+        }
+        
+
+
+    }
+
+    
+}
 
 //=======================================================================================
 
+let b_252_1 = new Breaker_252("CLOSED" , 1);
+let b_252_2 = new Breaker_252("CLOSED" , 2);
+let b_252_8 = new Breaker_252("CLOSED" , 8);
+
+let l_286_1 = new Lockout_Relay();
+let l_286_2 = new Lockout_Relay();
+let SS = new Selector_Switch(false);
 

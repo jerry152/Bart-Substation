@@ -1,12 +1,5 @@
 
-
 /*
-//let LR = new Lockout_Relay();
-
-
-document.getElementById("252-1-close").onclick = function() {
-    b_252_1.update(SS.getState, false);
-}
 document.getElementById("252-1-open").onclick = function() {
     b_252_1.update(SS.getState, true);
 }
@@ -300,7 +293,8 @@ function drawImageRightLockout(){
 function updateFrameSelector(){
     currentFrame3 = ++currentframe3 % cols;
     srcxSelector = currentFrame3 * width;
-    ctx.clearRect(selectorPosX,selectorPosY, scaleWidth, scaleHeight);
+    c
+    tx.clearRect(selectorPosX,selectorPosY, scaleWidth, scaleHeight);
 }
 function drawImageSelector(){
     updateFrameSelector();
@@ -391,7 +385,117 @@ function drawLight(light){
     }
 }
 
+// b_252_1.update(SS.getState(), false);
+function closeSwitch(name){
+    switch(name){
+        case "CSswitch1" :
+                // check if off light is already on
+                if(red1frame!=1){
+                    //if not then turn off light on
+                    drawLight("lockout1");
+                }
+                //off position 
+                ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);
+                //delay 500ms then neutral position.
+                setTimeout(function flicker(){
+                    ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);},500);
+                break; 
+        case "CSswitch2":
+                if(red2frame!=1){
+                    drawLight("lockout2");
+                }
+                ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);
+                setTimeout(function flicker(){
+                    ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);},500);
+            break;
+        
+        case "CSswitch3":
+                if(red3frame!=1){
+                    drawLight("lockout3");
+                }
+                ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);
+                setTimeout(function flicker(){
+                    ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);},500);
+            break;
+    }
+}
+function openSwitch(name){
+    switch(name){
+        case "CSswitch1" :
+            //check if on light already on
+            if(green1frame!=1){
+                //if off then turn on
+                drawLight("lockout1");
+            }
+            //on position
+            ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);
+            //then delay 500ms then neutral position
+            setTimeout(function flicker(){
+                ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);},500);
+            break;
+        case "CSswitch2":
+            if(green2frame!=1){
+                drawLight("lockout2");
+            }
+            ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);
+            setTimeout(function flicker(){
+                ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);},500);
+            break;
+        
+        case "CSswitch3":
+            if(green3frame!=1){
+                drawLight("lockout3");
+            }
+            ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);
+            setTimeout(function flicker(){
+                ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);},500);
+            break;
+    }
+    
+}
+function updateFrameControlSwitch(xcoor,name){
+    //checks if left side of sprite or right side is clicked on
+    switch(name){
+        case "switch1":
+            ctx.clearRect(controlSwitch1X,controlSwitch1Y, scaleWidthCS, scaleHeightCS);
+            if (xcoor < (controlSwitch1X + (scaleWidthCS / 2)))
+            {
+                openSwitch("CSswitch1");
+            }
+            else
+            {
+                closeSwitch("CSswitch1");
+            }
+            break;
+        
+        case "switch2":
+            ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
+            if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
+            {
+                openSwitch("CSswitch2");
+            }
+            else
+            {
+                closeSwitch("CSswitch2");
+            }
+            break;
 
+        case "switch3":
+            ctx.clearRect(controlSwitch3X,controlSwitch3Y, scaleWidthCS, scaleHeightCS);
+            if (xcoor < (controlSwitch3X + (scaleWidthCS / 2)))
+            {
+                openSwitch("CSswitch3");
+            }
+            else
+            {
+                closeSwitch("CSswitch3");
+            }
+            break;
+    }
+}
+
+
+/*
 function updateFrameControlSwitch1(xcoor){
     ctx.clearRect(controlSwitch1X,controlSwitch1Y, scaleWidthCS, scaleHeightCS);
     if (xcoor < (controlSwitch1X + (scaleWidthCS / 2)))
@@ -408,14 +512,19 @@ function updateFrameControlSwitch1(xcoor){
         }
         ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS); 
     }
-
+    setTimeout(function flicker(){
+    ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);},500);
 }
+*/
+/*
 function drawImageControlSwitch1(xcoor){
     
     updateFrameControlSwitch1(xcoor);
     setTimeout(function flicker(){
-ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);},500);
+    ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);},500);
 }
+*/
+/*
 function updateFrameControlSwitch2(xcoor){
     ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
     if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
@@ -433,11 +542,15 @@ function updateFrameControlSwitch2(xcoor){
         ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS); 
     }
 }
+*/
+/*
 function drawImageControlSwitch2(xcoor){
     updateFrameControlSwitch2(xcoor);
     setTimeout(function flicker(){
 ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);},500);
 }
+*/
+/*
 function updateFrameControlSwitch3(xcoor){
     ctx.clearRect(controlSwitch3X,controlSwitch3Y, scaleWidthCS, scaleHeightCS);
     if (xcoor < (controlSwitch3X + (scaleWidthCS / 2)))
@@ -460,6 +573,7 @@ function drawImageControlSwitch3(xcoor){
     setTimeout(function flicker(){
 ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);},500);
 }
+*/
 
 function getCoor(event) {
     var x = event.offsetX;
@@ -467,32 +581,37 @@ function getCoor(event) {
 
     if ((x > selectorPosX && x < selectorPosX + scaleWidth)&& (y > selectorPosY && y < selectorPosY + scaleHeight))
     {
+        //if selector sprite is clicked on
         drawImageSelector();
         drawLight("orange1");
     }
     else if ((x > lockout1PosX && x < lockout1PosX + scaleWidth) && (y > lockout1PosY && y < lockout1PosY + scaleHeight))
     {
+        //if left lock sprite is clicked on
         drawImageLeftLockout();
         drawLight("orange2");
     }
     else if ((x > lockout2PosX && x < lockout2PosX + scaleWidth) && (y > lockout2PosY && y < lockout2PosY + scaleHeight))
     {
+        //if right lock sprite is clicked on
         drawImageRightLockout();
         drawLight("orange3");
     }
     else if ((x > controlSwitch1X && x < controlSwitch1X + scaleWidthCS) && (y > controlSwitch1Y && y < controlSwitch1Y + scaleHeightCS))
     {
-        drawImageControlSwitch1(x);
+        //if controlswitch sprite is clicked on
+        updateFrameControlSwitch(x,"switch1");
     }
     else if ((x > controlSwitch2X && x < controlSwitch2X + scaleWidthCS) && (y > controlSwitch2Y && y < controlSwitch2Y + scaleHeightCS))
     {
-        drawImageControlSwitch2(x);
+        //if controlswitch sprite is clicked on
+        updateFrameControlSwitch(x,"switch2");
     }
     else if ((x > controlSwitch3X && x < controlSwitch3X + scaleWidthCS) && (y > controlSwitch3Y && y < controlSwitch3Y + scaleHeightCS))
     {
-        drawImageControlSwitch3(x);
+        //if controlswitch sprite is clicked on
+        updateFrameControlSwitch(x,"switch3");
     }
 }
-setTimeout(Display,100);
-
+setTimeout(display,100);
 
