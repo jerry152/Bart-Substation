@@ -37,14 +37,19 @@ class AC_Properties {
     constructor() {
         this.input_kV = 34.5;
         this.max_kV = 38;
+        this.output_kV = 0;
     }
     //Getters ================================
     get_Input_Voltage(){
         return this.input_kV;
     }
 
-    get_max_Voltage(){
+    get_Max_Voltage(){
         return this.max_kV;
+    }
+
+    get_Output_Voltage() {
+        return this.output_kV;
     }
     
     //Setters ================================
@@ -53,6 +58,9 @@ class AC_Properties {
     }
     set_max_Voltage(max){
         this.max_kV = max;
+    }
+    set_Output_Voltage(output) {
+        this.output_kV = output;
     }
 }
 
@@ -121,7 +129,6 @@ class Control_Switch extends AC_Properties {
         set_Output_Voltage(0);
     }
     
-
     update( SelectorState, state ) {
         if( SelectorState ) {
             alert( "Cant do that, im in remote!" );
@@ -135,10 +142,18 @@ class Control_Switch extends AC_Properties {
 
             //Backcode do updates
             if(state) { //open
-                
+                // check input/output to see if there is an over/under currents
+                this.trip();
+
+                if( get_ou )
+
+                // Once 
+            } else {
+                this.close();
             }
 
-            //Frontend methods to update
+            //Frontend methods to send update
+            
 
 
         }
