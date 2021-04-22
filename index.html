@@ -64,16 +64,16 @@
     <div class="container" style="margin-top: 58px;">
         <!--Map-->
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8 left">
                 <canvas id='canvas' onclick=getCoor(event) style="border:5px solid #000000;"><a></canvas>
                 <!-- <canvas id="myCanvas" width="902" height="768" style="border:5px solid #000000;">
-</canvas>  -->
+                </canvas>  -->
                 <!-- <img src="testButton.png" class="img-fluid" alt="Girl in a jacket" width="100" height="100">  -->
                 <!--Any click on the canvas send coordinates to getCoor()-->
                 <script src="animations.js"></script>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-4 right">
                     <!--Alertbutton-->
                 <button type="button" id=alertbutton class="btn btn-primary btn-lg">Alert HMI</button>
                 <!--ACCORDION-->
@@ -121,15 +121,6 @@
                 </div>
                 
             </div>
-            <!--Extra text-->
-        <div class= row>
-            <div class= col-auto>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde laudantium similique aliquid dolorum ducimus ratione expedita possimus in dolorem mollitia totam, enim recusandae blanditiis ipsum suscipit, labore laborum id cum?</p>
-            </div>
-            <div class= col-auto>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde laudantium similique aliquid dolorum ducimus ratione expedita possimus in dolorem mollitia totam, enim recusandae blanditiis ipsum suscipit, labore laborum id cum?</p>
-            </div>
-        </div>
     </div>
    
     <script type="text/javascript" src="alarmsHistory.js"></script>
@@ -138,4 +129,8 @@
     <script type="text/javascript" src="main.js"></script>
 
 </body>
-</html>
+</html>case "selector" :
+                currentframe3++;
+                ctx.clearRect(selectorPosX,selectorPosY, scaleWidth, scaleHeight);
+                ctx.drawImage(character2,0,0, width, height, selectorPosX, selectorPosY, scaleWidth, scaleHeight);
+                break;

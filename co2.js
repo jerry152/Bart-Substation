@@ -55,10 +55,10 @@ class AC_Properties {
     }
     
     //Setters ================================
-    set_input_Volatage(input){
+    set_Input_Voltage(input){
         this.input_kV = input;
     }
-    set_max_Voltage(max){
+    set_Max_Voltage(max){
         this.max_kV = max;
     }
     set_Output_Voltage(output) {
@@ -76,32 +76,32 @@ class Selector_Switch {
         this.state = state;
     }
     //Getters ================================
-    getState() {
+    get_State() {
         return this.state;
     }
 
-    getStateName() {
+    get_State_Name() {
         if( this.state )
             return "REMOTE";
         else 
             return "LOCAL";
     }
 
-    isRemote() {
+    is_Remote() {
         return this.state;
     }
 
-    isLocal() {
+    is_Local() {
         return !this.state;
     }
 
     //Setters ================================
 
-    swapState() {
+    swap_State() {
         this.state = ! this.state;
     }
 
-    setState(state){
+    set_State(state){
         this.state = state;
     }
 }
@@ -123,22 +123,22 @@ class Control_Switch extends AC_Properties {
 
     trip() {
         this.state = true;
-        set_Output_Voltage( get_Input_Voltage() );
+        this.set_Output_Voltage( this.get_Input_Voltage() );
     }
 
     close() {
         this.state = false;
-        set_Output_Voltage(0);
+        this.set_Output_Voltage(0);
     }
     
     update( SelectorState, state ) {
         if( SelectorState ) {
             alert( "Cant do that, im in remote!" );
-            alert( SS.getStateName() );
+            alert( SS.get_State_Name() );
         } 
         else {
 
-            alert( "Local!" );
+            //alert( "Local!" );
 
             //managed to update
 
@@ -147,22 +147,27 @@ class Control_Switch extends AC_Properties {
                 // check input/output to see if there is an over/under currents
                 this.trip();
 
-                if( get_Output_Voltage() > get_Max_Voltage() ) {
+                if( this.get_Output_Voltage() > this.get_Max_Voltage() ) {
                     // We have an over current
                     alert("Overcurrent reading on " + String(this.num));
+
+                    this.trip();
 
 
 
                 } else {
-                    if( get_Output_Voltage() < 30 ) { // Temp Undercurrent Value
+                    if( this.get_Output_Voltage() < 30 ) { // Temp Undercurrent Value
                         // We have an over current Undercurrent
                         alert("Undercurrent!")
+                        this.trip();
                     }
                 }
             } else {
                 // State change 
                 this.close();
             }
+
+            //alert("Breaker" + String(this.num))
             //Send Updates to adjacent modules
 
             //Frontend methods to send 
@@ -225,7 +230,8 @@ class Lockout_Relay {
 
         if(acknowledged){
 
-            alert();
+            alert("Open all Breakers");
+            
         }
         else{
             alert("Failed to change. Must be acknowledged first!");

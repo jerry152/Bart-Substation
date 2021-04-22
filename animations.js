@@ -1,23 +1,4 @@
 
-/*
-document.getElementById("252-1-open").onclick = function() {
-    b_252_1.update(SS.getState, true);
-}
-
-document.getElementById("252-2-close").onclick = function() {
-    b_252_2.update(SS.getState, false);
-}
-document.getElementById("252-2-open").onclick = function() {
-    b_252_2.update(SS.getState, true);
-}
-
-document.getElementById("252-8-close").onclick = function() {
-    b_252_8.update(SS.getState, false);
-}
-document.getElementById("252-8-open").onclick = function() {
-    b_252_8.update(SS.getState, true);
-}*/
-
 //changable size of canvas
 
 var canvasWidth = 750;
@@ -271,34 +252,26 @@ function display(){
 
 }
 
-function updateFrameLeftLockout(){
-    currentFrame1 = ++currentframe1 % cols;
-    srcxLockoutRelay1 = currentFrame1 * width;
-    ctx.clearRect(lockout1PosX,lockout1PosY, scaleWidth, scaleHeight);
-}
-function drawImageLeftLockout(){
-    updateFrameLeftLockout();
-    ctx.drawImage(character,srcxLockoutRelay1,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
-}
+// function updateFrameLeftLockout(){
+//     currentFrame1 = ++currentframe1 % cols;
+//     srcxLockoutRelay1 = currentFrame1 * width;
+//     ctx.clearRect(lockout1PosX,lockout1PosY, scaleWidth, scaleHeight);
+// }
+// function drawImageLeftLockout(){
+//     updateFrameLeftLockout();
+//     ctx.drawImage(character,srcxLockoutRelay1,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
+// }
 
-function updateFrameRightLockout(){
-    currentFrame2 = ++currentframe2 % cols;
-    srcxLockoutRelay2 = currentFrame2 * width;
-    ctx.clearRect(lockout2PosX,lockout2PosY, scaleWidth, scaleHeight);
-}
-function drawImageRightLockout(){
-    updateFrameRightLockout();
-    ctx.drawImage(character,srcxLockoutRelay2,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
-}
-function updateFrameSelector(){
-    currentFrame3 = ++currentframe3 % cols;
-    srcxSelector = currentFrame3 * width;
-    ctx.clearRect(selectorPosX,selectorPosY, scaleWidth, scaleHeight);
-}
-function drawImageSelector(){
-    updateFrameSelector();
-    ctx.drawImage(character2,srcxSelector,0, width, height, selectorPosX, selectorPosY, scaleWidth, scaleHeight);
-}
+// function updateFrameRightLockout(){
+//     currentFrame2 = ++currentframe2 % cols;
+//     srcxLockoutRelay2 = currentFrame2 * width;
+//     ctx.clearRect(lockout2PosX,lockout2PosY, scaleWidth, scaleHeight);
+// }
+// function drawImageRightLockout(){
+//     updateFrameRightLockout();
+//     ctx.drawImage(character,srcxLockoutRelay2,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
+// }
+
 function updateLight(light){
     switch(light){
         case "orange1":
@@ -387,6 +360,21 @@ function drawLight(light){
 // b_252_1.update(SS.getState(), false);
 function closeSwitch(name){
     switch(name){
+        case "selector" :
+                currentframe3++;
+                ctx.clearRect(selectorPosX,selectorPosY, scaleWidth, scaleHeight);
+                ctx.drawImage(character2,0,0, width, height, selectorPosX, selectorPosY, scaleWidth, scaleHeight);
+                break;
+        case "lockout1" :
+                currentframe1++;
+                ctx.clearRect(lockout1PosX,lockout1PosY, scaleWidth, scaleHeight);
+                ctx.drawImage(character,0,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
+                break;
+        case "lockout2" :
+                currentframe2++;
+                ctx.clearRect(lockout2PosX,lockout2PosY, scaleWidth, scaleHeight);
+                ctx.drawImage(character,0,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
+                break;
         case "CSswitch1" :
                 // check if off light is already on
                 if(red1frame!=1){
@@ -420,6 +408,21 @@ function closeSwitch(name){
 }
 function openSwitch(name){
     switch(name){
+        case "selector" :
+            currentframe3++;
+            ctx.clearRect(selectorPosX,selectorPosY, scaleWidth, scaleHeight);
+            ctx.drawImage(character2,width,0, width, height, selectorPosX, selectorPosY, scaleWidth, scaleHeight);
+            break;
+        case "lockout1" :
+            currentframe1++;
+            ctx.clearRect(lockout1PosX,lockout1PosY, scaleWidth, scaleHeight);
+            ctx.drawImage(character,width,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
+            break;
+        case "lockout2" :
+            currentframe2++;
+            ctx.clearRect(lockout2PosX,lockout2PosY, scaleWidth, scaleHeight);
+            ctx.drawImage(character,width,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
+            break;
         case "CSswitch1" :
             //check if on light already on
             if(green1frame!=1){
@@ -456,14 +459,22 @@ function updateFrameControlSwitch(xcoor,name){
     //checks if left side of sprite or right side is clicked on
     switch(name){
         case "switch1":
+            if (SS.is_Remote())
+            {
+                break;
+            }
             ctx.clearRect(controlSwitch1X,controlSwitch1Y, scaleWidthCS, scaleHeightCS);
             if (xcoor < (controlSwitch1X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch1");
+                b_252_1.set_Input_Voltage(40);
+                b_252_1.update(SS.get_State(),true);
             }
             else
             {
                 closeSwitch("CSswitch1");
+                b_252_1.update(SS.get_State(),false);
+                
             }
             break;
         
@@ -472,10 +483,13 @@ function updateFrameControlSwitch(xcoor,name){
             if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch2");
+                b_252_2.set_Input_Voltage(20);
+                b_252_2.update(SS.get_State(), true);
             }
             else
             {
                 closeSwitch("CSswitch2");
+                b_252_2.update(SS.get_State(), false);
             }
             break;
 
@@ -484,10 +498,12 @@ function updateFrameControlSwitch(xcoor,name){
             if (xcoor < (controlSwitch3X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch3");
+                b_252_8.update(SS.get_State(), true);
             }
             else
             {
                 closeSwitch("CSswitch3");
+                b_252_8.update(SS.get_State(), false);
             }
             break;
     }
@@ -581,19 +597,42 @@ function getCoor(event) {
     if ((x > selectorPosX && x < selectorPosX + scaleWidth)&& (y > selectorPosY && y < selectorPosY + scaleHeight))
     {
         //if selector sprite is clicked on
-        drawImageSelector();
+        if (currentframe3 % 2 == 0)
+        {
+            openSwitch("selector");
+        }
+        else
+        {
+            closeSwitch("selector");
+        }
+        SS.swap_State();
+        alert( SS.get_State_Name() );
         drawLight("orange1");
     }
     else if ((x > lockout1PosX && x < lockout1PosX + scaleWidth) && (y > lockout1PosY && y < lockout1PosY + scaleHeight))
     {
         //if left lock sprite is clicked on
-        drawImageLeftLockout();
+        if (currentframe1 % 2 == 0)
+        {
+            openSwitch("lockout1");
+        }
+        else
+        {
+            closeSwitch("lockout1");
+        }
         drawLight("orange2");
     }
     else if ((x > lockout2PosX && x < lockout2PosX + scaleWidth) && (y > lockout2PosY && y < lockout2PosY + scaleHeight))
     {
         //if right lock sprite is clicked on
-        drawImageRightLockout();
+        if (currentframe2 % 2 == 0)
+        {
+            openSwitch("lockout2");
+        }
+        else
+        {
+            closeSwitch("lockout2");
+        }
         drawLight("orange3");
     }
     else if ((x > controlSwitch1X && x < controlSwitch1X + scaleWidthCS) && (y > controlSwitch1Y && y < controlSwitch1Y + scaleHeightCS))
