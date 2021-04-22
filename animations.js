@@ -617,8 +617,8 @@ function getCoor(event) {
             openSwitch("lockout1");
 
             b_286_1.get_State(true);
-            openSwitch("CSwitch1");
-            openSwitch("CSwitch3");
+            openSwitch("CSswitch1");
+            openSwitch("CSswitch3");
         }
         else
         {
