@@ -17,21 +17,13 @@ p {
   color: black;
 }
 
-.right{
-  float:right;
-}
 
-.left{
-  float:left;
-}
-
-@media screen and (min-width : 1750px) {
+@media screen and (min-width : 1400px) {
   .right {
     float:right;
-    top:0;
   }
   .left{
-    position:relative;
+    position:absolute;
     float:left;
   }
 }
