@@ -169,7 +169,7 @@ class Control_Switch extends AC_Properties {
 
             //alert("Breaker" + String(this.num))
             //Send Updates to adjacent modules
-
+            alert( "Breaker" + String(this.num) + " input " + String(this.get_Input_Voltage()) + "; out" + String(this.get_Output_Voltage()) );
             //Frontend methods to send 
             
 
@@ -266,7 +266,11 @@ class Lockout_286_1 extends Lockout_Relay{
 
     getState(){
         if(this.state){
+            this.trip();
             alert("Lockout 286_1 Opened")
+            b_252_1.update(SS.getState(),true);
+            b_252_8.update(SS.getState(), true);
+
         }
         else{
             alert("186 Relay is not open!")
@@ -304,6 +308,9 @@ class Lockout_286_2 extends Lockout_Relay{
     getState(){
         if(this.state){
             alert("Lockout 286_2 Opened");
+            b_252_2.update(SS.getState(), true);
+            b_252_8.update(SS.getState(), true);
+
         }
         else{
             alert("186 Relay is not open")
@@ -331,4 +338,8 @@ let b_252_8 = new Breaker_252("CLOSED" , 8);
 let l_286_1 = new Lockout_Relay();
 let l_286_2 = new Lockout_Relay();
 let SS = new Selector_Switch(false);
+
+let b_286_1 = new Lockout_286_1();
+let b_286_2 = new Lockout_286_2();
+let LR = new Lockout_Relay(false);
 

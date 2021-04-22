@@ -615,6 +615,10 @@ function getCoor(event) {
         if (currentframe1 % 2 == 0)
         {
             openSwitch("lockout1");
+
+            b_286_1.getState(true);
+            openSwitch("CSwitch1");
+            openSwitch("CSwitch3");
         }
         else
         {
