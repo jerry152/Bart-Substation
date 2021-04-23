@@ -231,7 +231,7 @@ class Lockout_Relay {
         if(acknowledged){
 
             alert("Open all Breakers");
-            
+            this.trip();
         }
         else{
             alert("Failed to change. Must be acknowledged first!");
