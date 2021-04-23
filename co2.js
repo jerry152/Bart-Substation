@@ -115,7 +115,7 @@ class Control_Switch extends AC_Properties {
         this.state = state;
     }
 
-    get_state() {
+    get_State() {
         if(this.state)
             return "OPENED";
         return "CLOSED";
@@ -169,7 +169,7 @@ class Control_Switch extends AC_Properties {
 
             //alert("Breaker" + String(this.num))
             //Send Updates to adjacent modules
-
+            alert( "Breaker" + String(this.num) + " input " + String(this.get_Input_Voltage()) + "; out" + String(this.get_Output_Voltage()) );
             //Frontend methods to send 
             
 
@@ -196,15 +196,15 @@ class Lockout_Relay {
         this.state = false;
     }
     //Getters ================================
-    getState(){
+    get_State(){
         return this.state;
     }
 
-    getBreaker(){
+    get_Breaker(){
         return this.state;
     }
 
-    getStateName() {
+    get_StateName() {
         if( this.state )
             //return "RELAY TRIPPED";
             return this.trip();
@@ -216,12 +216,12 @@ class Lockout_Relay {
 
 
     //Setters ================================
-    setState(state) {
+    set_State(state) {
         
         this.state = state;
     }
 
-    setBreaker(breaker){
+    set_Breaker(breaker){
 
         this.breaker = breaker;
     }
@@ -258,22 +258,26 @@ class Lockout_Relay {
 
 
 class Lockout_286_1 extends Lockout_Relay{
-    constructor(breaker,number,state){
+    constructor(number,state){
         this.breaker = breaker;
-        this.number = number;
+    //    this.number = number;
         this.state = state;
     }
 
-    getState(){
+    get_State(){
         if(this.state){
+            this.trip();
             alert("Lockout 286_1 Opened")
+            b_252_1.update(SS.get_State(), true);
+            b_252_8.update(SS.get_State(), true);
+
         }
         else{
             alert("186 Relay is not open!")
         }
 
     }
-    getBreaker(){
+    get_Breaker(){
         if(this.breaker == "H1" && this.breaker == "H8" && this.breaker != "H2"){
             return this.state = true;
         }
@@ -301,16 +305,19 @@ class Lockout_286_2 extends Lockout_Relay{
         this.state = state;
     }
 
-    getState(){
+    get_State(){
         if(this.state){
             alert("Lockout 286_2 Opened");
+            b_252_2.update(SS.get_State(), true);
+            b_252_8.update(SS.get_State(), true);
+
         }
         else{
             alert("186 Relay is not open")
         }
     }
     
-    getBreaker(){
+    get_Breaker(){
         if(this.breaker == "H2" && this.breaker == "H8" && this.breaker != "H1"){
             return this.state = true;
         }
@@ -331,4 +338,8 @@ let b_252_8 = new Breaker_252("CLOSED" , 8);
 let l_286_1 = new Lockout_Relay();
 let l_286_2 = new Lockout_Relay();
 let SS = new Selector_Switch(false);
+
+let b_286_1 = new Lockout_286_1();
+let b_286_2 = new Lockout_286_2();
+let LR = new Lockout_Relay(false);
 
