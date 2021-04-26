@@ -68,68 +68,68 @@ var red2frame = 1;
 var red3frame = 1;
 
 var character = new Image();
-character.src = "lockout.png";
+character.src = "sprites/lockout.png";
 sheetWidth1 = character.naturalWidth;
 sheetHeight1 = character.naturalHeight;
 
 var character2 = new Image();
-character2.src = "selector.png";
+character2.src = "sprites/selector.png";
 
 var character3 = new Image();
-character3.src = "controlSwitch.png";
+character3.src = "sprites/controlSwitch.png";
 sheetWidth2 = character3.naturalWidth;
 sheetHeight2 = character3.naturalHeight;
 
 var character4 = new Image();
-character4.src =  "orangeLight.png";
+character4.src =  "sprites/orangeLight.png";
 buttonWidth = character4.naturalWidth;
 buttonHeight = character4.naturalHeight;
 //red light 
 var character5 = new Image();
-character5.src = "redLight.png";
+character5.src = "sprites/redLight.png";
 
 //blue light
 var character6 = new Image();
-character6.src = "blueLight.png";
+character6.src = "sprites/blueLight.png";
 
 //blue light
 var character6 = new Image();
-character6.src = "blueLight.png";
+character6.src = "sprites/blueLight.png";
 
 //green light
 var character7 = new Image();
-character7.src = "greenLight.png";
+character7.src = "sprites/greenLight.png";
 
 //meter1
 var character8 = new Image();
-character8.src = "meter1.png";
+character8.src = "sprites/meter1.png";
 
 //meter2
 var character9 = new Image();
-character9.src = "meter2.png";
+character9.src = "sprites/meter2.png";
 
 //meter3
 var character10 = new Image();
-character10.src = "meter3.png";
+character10.src = "sprites/meter3.png";
 
 //labels
 var character11 = new Image();
-character11.src = "selectorLabel.png";
+character11.src = "sprites/selectorLabel.png";
 
 var character12 = new Image();
-character12.src = "CSLabel1.png";
+character12.src = "sprites/CSLabel1.png";
 
 var character13 = new Image();
-character13.src = "CSLabel2.png";
+character13.src = "sprites/CSLabel2.png";
 
 var character14 = new Image();
-character14.src = "lockoutLabel1.png";
+character14.src = "sprites/lockoutLabel1.png";
 
 var character15 = new Image();
-character15.src = "CSLabel3.png";
+character15.src = "sprites/CSLabel3.png";
 
 var character16 = new Image();
-character16.src = "lockoutLabel2.png";
+character16.src = "sprites/lockoutLabel2.png";
 
 //changable locations of sprites
 //lockout
@@ -252,25 +252,7 @@ function display(){
 
 }
 
-// function updateFrameLeftLockout(){
-//     currentFrame1 = ++currentframe1 % cols;
-//     srcxLockoutRelay1 = currentFrame1 * width;
-//     ctx.clearRect(lockout1PosX,lockout1PosY, scaleWidth, scaleHeight);
-// }
-// function drawImageLeftLockout(){
-//     updateFrameLeftLockout();
-//     ctx.drawImage(character,srcxLockoutRelay1,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
-// }
 
-// function updateFrameRightLockout(){
-//     currentFrame2 = ++currentframe2 % cols;
-//     srcxLockoutRelay2 = currentFrame2 * width;
-//     ctx.clearRect(lockout2PosX,lockout2PosY, scaleWidth, scaleHeight);
-// }
-// function drawImageRightLockout(){
-//     updateFrameRightLockout();
-//     ctx.drawImage(character,srcxLockoutRelay2,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
-// }
 
 function updateLight(light){
     switch(light){
@@ -508,87 +490,6 @@ function updateFrameControlSwitch(xcoor,name){
             break;
     }
 }
-
-
-/*
-function updateFrameControlSwitch1(xcoor){
-    ctx.clearRect(controlSwitch1X,controlSwitch1Y, scaleWidthCS, scaleHeightCS);
-    if (xcoor < (controlSwitch1X + (scaleWidthCS / 2)))
-    {
-        if(green1frame!=1){
-            drawLight("lockout1");
-        }
-        ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);
-    }
-    else
-    {
-        if(red1frame!=1){
-            drawLight("lockout1");
-        }
-        ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS); 
-    }
-    setTimeout(function flicker(){
-    ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);},500);
-}
-*/
-/*
-function drawImageControlSwitch1(xcoor){
-    
-    updateFrameControlSwitch1(xcoor);
-    setTimeout(function flicker(){
-    ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);},500);
-}
-*/
-/*
-function updateFrameControlSwitch2(xcoor){
-    ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
-    if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
-    {
-        if(green2frame!=1){
-            drawLight("lockout2");
-        }
-        ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);
-    }
-    else
-    {
-        if(red2frame!=1){
-            drawLight("lockout2");
-        }
-        ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS); 
-    }
-}
-*/
-/*
-function drawImageControlSwitch2(xcoor){
-    updateFrameControlSwitch2(xcoor);
-    setTimeout(function flicker(){
-ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);},500);
-}
-*/
-/*
-function updateFrameControlSwitch3(xcoor){
-    ctx.clearRect(controlSwitch3X,controlSwitch3Y, scaleWidthCS, scaleHeightCS);
-    if (xcoor < (controlSwitch3X + (scaleWidthCS / 2)))
-    {
-        if(green3frame!=1){
-            drawLight("lockout3");
-        }
-        ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);
-    }
-    else
-    {
-        if(red3frame!=1){
-            drawLight("lockout3");
-        }
-        ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS); 
-    }
-}
-function drawImageControlSwitch3(xcoor){
-    updateFrameControlSwitch3(xcoor);
-    setTimeout(function flicker(){
-ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);},500);
-}
-*/
 
 function getCoor(event) {
     var x = event.offsetX;
