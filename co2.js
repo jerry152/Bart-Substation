@@ -231,6 +231,7 @@ class Lockout_Relay {
         if(acknowledged){
 
             alert("Open all Breakers");
+
             
         }
         else{
