@@ -231,7 +231,8 @@ class Lockout_Relay {
         if(acknowledged){
 
             alert("Open all Breakers");
-            this.trip();
+
+            
         }
         else{
             alert("Failed to change. Must be acknowledged first!");
@@ -259,19 +260,22 @@ class Lockout_Relay {
 
 class Lockout_286_1 extends Lockout_Relay{
     constructor(number,state){
-        this.breaker = breaker;
-    //    this.number = number;
-        this.state = state;
+    //    this.breaker = breaker;
+    super(state == "H1 and H8 OPENED");
+        this.number = number;
+      
+       
     }
 
     get_State(){
-        if(this.state){
+        if(this.state && b_286_2.state(false)){
             this.trip();
             alert("Lockout 286_1 Opened")
             b_252_1.update(SS.get_State(), true);
             b_252_8.update(SS.get_State(), true);
 
         }
+        
         else{
             alert("186 Relay is not open!")
         }
@@ -300,9 +304,11 @@ class Lockout_286_1 extends Lockout_Relay{
 
 class Lockout_286_2 extends Lockout_Relay{
 
-    constructor(breaker,state){
-        this.breaker = breaker;
-        this.state = state;
+    constructor(number,state){
+       // this.breaker = breaker;
+       super(state == "H2 and H8 OPENED");
+       // this.state = state;
+       this.number = number;
     }
 
     get_State(){

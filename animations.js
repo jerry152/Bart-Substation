@@ -248,6 +248,26 @@ function display(){
 
 }
 
+// function updateFrameLeftLockout(){
+//     currentFrame1 = ++currentframe1 % cols;
+//     srcxLockoutRelay1 = currentFrame1 * width;
+//     ctx.clearRect(lockout1PosX,lockout1PosY, scaleWidth, scaleHeight);
+// }
+// function drawImageLeftLockout(){
+//     updateFrameLeftLockout();
+//     ctx.drawImage(character,srcxLockoutRelay1,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
+// }
+
+// function updateFrameRightLockout(){
+//     currentFrame2 = ++currentframe2 % cols;
+//     srcxLockoutRelay2 = currentFrame2 * width;
+//     ctx.clearRect(lockout2PosX,lockout2PosY, scaleWidth, scaleHeight);
+// }
+// function drawImageRightLockout(){
+//     updateFrameRightLockout();
+//     ctx.drawImage(character,srcxLockoutRelay2,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
+// }
+
 function updateLight(light){
     switch(light){
         case "orange1":
@@ -495,6 +515,8 @@ function getCoor(event) {
         if (currentframe3 % 2 == 0)
         {
             openSwitch("selector");
+
+            
         }
         else
         {
@@ -511,13 +533,19 @@ function getCoor(event) {
         {
             openSwitch("lockout1");
 
+
             b_286_1.get_State(true);
+            //b_286_1.get_State(true);
+            closeSwitch("CSswitch2");
             openSwitch("CSswitch1");
             openSwitch("CSswitch3");
         }
         else
         {
             closeSwitch("lockout1");
+
+            closeSwitch("CSswitch1");
+           // closeSwitch("CSswitch3");
         }
         drawLight("orange2");
     }
@@ -527,9 +555,14 @@ function getCoor(event) {
         if (currentframe2 % 2 == 0)
         {
             openSwitch("lockout2");
+
+            closeSwitch("CSswitch1");
+            openSwitch("CSswitch2");
+            openSwitch("CSswitch3");
         }
         else
         {
+            openSwitch("CSswitch2");
             closeSwitch("lockout2");
         }
         drawLight("orange3");
