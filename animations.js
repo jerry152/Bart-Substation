@@ -1,4 +1,4 @@
-//changable size of canvas
+////changable size of canvas
 
 var canvasWidth = 750;
 var canvasHeight = 768;
@@ -54,10 +54,10 @@ var buttonScale = 15;
 var currentframe1 = 1;
 var currentframe2 = 1;
 var currentframe3 = 0;
-var orange1frame = 1;
+var orange1frame = 0;
 var orange2frame = 0;
 var orange3frame = 0;
-var blue1frame = 0;
+var blue1frame = 1;
 var green1frame = 0;
 var green2frame = 0;
 var green3frame = 0;
@@ -87,12 +87,15 @@ var character5 = new Image();character5.src = "sprites/redLight.png";
 var character6 = new Image();character6.src = "sprites/blueLight.png";
 //green light
 var character7 = new Image();character7.src = "sprites/greenLight.png";
-//meter1
-var character8 = new Image();character8.src = "sprites/meter1.png";
-//meter2
-var character9 = new Image();character9.src = "sprites/meter2.png";
-//meter3
-var character10 = new Image();character10.src = "sprites/meter3.png";
+
+//extra meters
+    //meter1
+    //var character8 = new Image();character8.src = "sprites/meter1.png";
+    //meter2
+    //var character9 = new Image();character9.src = "sprites/meter2.png";
+    //meter3
+    //var character10 = new Image();character10.src = "sprites/meter3.png";
+    
 //labels
 var character11 = new Image();character11.src = "sprites/selectorLabel.png";
 var character12 = new Image();character12.src = "sprites/CSLabel1.png";
@@ -106,7 +109,18 @@ var character19 = new Image();character19.src = "sprites/CSLabel5.png";
 var character20 = new Image();character20.src = "sprites/lockoutLabel3.png";
 var character21 = new Image();character21.src = "sprites/CSLabel6.png";
 var character22 = new Image();character22.src = "sprites/CSLabel7.png";
+var character23 = new Image();character23.src = "sprites/cableLabel1.png";
+var character24 = new Image();character24.src = "sprites/cableLabel2.png";
+var character25 = new Image();character25.src = "sprites/cableLabel3.png";
 
+//connecting breaker features 
+var character30 = new Image();character30.src = "sprites/topLeftCable.png";
+var character31 = new Image();character31.src = "sprites/topRightCable.png";
+var character32 = new Image();character32.src = "sprites/bottomCable1.png";
+var character33 = new Image();character33.src = "sprites/bottomCable2.png";
+//transformers
+var character34 = new Image();character34.src = "sprites/leftTransformer.png";
+var character35 = new Image();character35.src = "sprites/rightTransformer.png";
 ////changable locations of AC sprites
 //lockout
 var lockout1PosX = 0;var lockout1PosY = 250;
@@ -121,7 +135,7 @@ var controlSwitch2X = 450;var controlSwitch2Y = 85;
 
 var controlSwitch3X = 350;var controlSwitch3Y = 250;
 //lights
-var orangeLight1X = 0;var orangeLight1Y = 70;
+var orangeLight1X = 70;var orangeLight1Y = 70;
 
 var orangeLight2X = 35;var orangeLight2Y = 235;
 
@@ -133,7 +147,7 @@ var redLight2X = 520;var redLight2Y = 70;
 
 var redLight3X = 420;var redLight3Y = 235;  
 
-var blueLightX = 70; var blueLightY = 70; 
+var blueLightX = 0; var blueLightY = 70; 
 
 var greenLight1X = 250; var greenLight1Y = 70; 
 
@@ -156,7 +170,7 @@ var controlSwitch6X = 250;var controlSwitch6Y = 575;
 
 var controlSwitch7X = 450;var controlSwitch7Y = 575;
 //lights
-var orangeLight4X = 0;var orangeLight4Y = 410;
+var orangeLight4X = 70;var orangeLight4Y = 410;
 
 var orangeLight5X = 695;var orangeLight5Y = 410;
 
@@ -168,7 +182,7 @@ var redLight7X = 320;var redLight7Y = 560;
 
 var redLight8X = 520; var redLight8Y = 560;
 
-var blueLight2X = 70;var blueLight2Y = 410; 
+var blueLight2X = 0;var blueLight2Y = 410; 
 
 var greenLight4X = 250;var greenLight4Y = 410; 
 
@@ -189,7 +203,7 @@ function display(){//Shows sprites on first refresh of page
     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);
     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);
     //orange
-    ctx.drawImage(character4,buttonWidth/2,0, widthB, heightB, orangeLight1X, orangeLight1Y, buttonScale, buttonScale);
+    ctx.drawImage(character4,0,0, widthB, heightB, orangeLight1X, orangeLight1Y, buttonScale, buttonScale);
     ctx.drawImage(character4,0,0, widthB, heightB, orangeLight2X, orangeLight2Y, buttonScale, buttonScale);
     ctx.drawImage(character4,0,0, widthB, heightB, orangeLight3X, orangeLight3Y, buttonScale, buttonScale);
     //red
@@ -197,15 +211,16 @@ function display(){//Shows sprites on first refresh of page
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight2X, redLight2Y, buttonScale, buttonScale); 
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight3X, redLight3Y, buttonScale, buttonScale); 
     //blue
-    ctx.drawImage(character6,0,0, widthB, heightB, blueLightX, blueLightY, buttonScale, buttonScale); 
+    ctx.drawImage(character6,buttonWidth/2,0, widthB, heightB, blueLightX, blueLightY, buttonScale, buttonScale); 
     //green
     ctx.drawImage(character7,0,0, widthB, heightB, greenLight1X, greenLight1Y, buttonScale, buttonScale); 
     ctx.drawImage(character7,0,0, widthB, heightB, greenLight2X, greenLight2Y, buttonScale, buttonScale); 
     ctx.drawImage(character7,0,0, widthB, heightB, greenLight3X, greenLight3Y, buttonScale, buttonScale); 
     //meters
-    ctx.drawImage(character8,0,0, character8.naturalWidth, character8.naturalHeight, 60, 0, 125, 70); 
-    ctx.drawImage(character9,0,0, character9.naturalWidth, character9.naturalHeight, 310, 0, 125, 70); 
-    ctx.drawImage(character10,0,0, character10.naturalWidth, character10.naturalHeight, 560, 0, 125, 70); 
+    //can be used in future projects if necessery 
+    //ctx.drawImage(character8,0,0, character8.naturalWidth, character8.naturalHeight, 60, 0, 125, 70); 
+   // ctx.drawImage(character9,0,0, character9.naturalWidth, character9.naturalHeight, 310, 0, 125, 70); 
+   // ctx.drawImage(character10,0,0, character10.naturalWidth, character10.naturalHeight, 560, 0, 125, 70); 
     //labels
     ctx.drawImage(character11,0,0, character11.naturalWidth, character11.naturalHeight, 0, 175, 93.75, 52.5); 
     ctx.drawImage(character12,0,0, character12.naturalWidth, character12.naturalHeight, 145, 100, 93.75, 52.5); 
@@ -219,6 +234,18 @@ function display(){//Shows sprites on first refresh of page
     ctx.drawImage(character20,0,0, character20.naturalWidth, character20.naturalHeight, 655, 518, 93.75, 52.5); 
     ctx.drawImage(character21,0,0, character21.naturalWidth, character21.naturalHeight, 145, 585, 93.75, 52.5); 
     ctx.drawImage(character22,0,0, character22.naturalWidth, character22.naturalHeight, 545, 585, 93.75, 52.5); 
+    ctx.drawImage(character23,0,0, character23.naturalWidth, character23.naturalHeight, 0, 0, 93.75, 52.5); 
+    ctx.drawImage(character23,0,0, character23.naturalWidth, character23.naturalHeight, 660, 0, 93.75, 52.5); 
+
+    //Cables
+    ctx.drawImage(character30,0,0, character30.naturalWidth, character30.naturalHeight, 84, 3, 253.75, 82); 
+    ctx.drawImage(character31,0,0, character31.naturalWidth, character31.naturalHeight, 450, 3, 253.75, 82); 
+    ctx.drawImage(character32,0,0, character32.naturalWidth, character32.naturalHeight, 149, 672, 435.75, 82); 
+    ctx.drawImage(character33,0,0, character33.naturalWidth, character33.naturalHeight, 183, 700, 453.75, 82); 
+
+    //transformers
+    ctx.drawImage(character34,0,0, character34.naturalWidth, character34.naturalHeight, 215, 200, 200, 300); 
+    ctx.drawImage(character35,0,0, character35.naturalWidth, character35.naturalHeight, 371, 200, 200, 300); 
 
     //DC Sprites
         //CS
@@ -232,7 +259,7 @@ function display(){//Shows sprites on first refresh of page
     ctx.drawImage(character,sheetWidth1/2,0, width, height, lockout3PosX, lockout3PosY, scaleWidth, scaleHeight);
         //lights
             //orange
-    ctx.drawImage(character4,buttonWidth/2,0, widthB, heightB, orangeLight4X, orangeLight4Y, buttonScale, buttonScale);
+    ctx.drawImage(character4,0,0, widthB, heightB, orangeLight4X, orangeLight4Y, buttonScale, buttonScale);
     ctx.drawImage(character4,0,0, widthB, heightB, orangeLight5X, orangeLight5Y, buttonScale, buttonScale);
             //green
     ctx.drawImage(character7,0,0, widthB, heightB, greenLight4X, greenLight4Y, buttonScale, buttonScale); 
@@ -245,7 +272,9 @@ function display(){//Shows sprites on first refresh of page
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight7X, redLight7Y, buttonScale, buttonScale); 
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight8X, redLight8Y, buttonScale, buttonScale); 
             //blue
-    ctx.drawImage(character6,0,0, widthB, heightB, blueLight2X, blueLight2Y, buttonScale, buttonScale); 
+    ctx.drawImage(character6,buttonWidth/2,0, widthB, heightB, blueLight2X, blueLight2Y, buttonScale, buttonScale);
+    
+    
 }
 //takes the location clicked on and connects to the right sprite to give animation
 function getCoor(event) {
@@ -516,6 +545,7 @@ function updateFrameControlSwitch(xcoor,name){
         case "switch1":
             if (SS.is_Remote())
             {
+                b_252_1.update(CS.get_State(),false);
                 break;
             }
             ctx.clearRect(controlSwitch1X,controlSwitch1Y, scaleWidthCS, scaleHeightCS);
@@ -534,6 +564,12 @@ function updateFrameControlSwitch(xcoor,name){
             break;
         
         case "switch2":
+            if(SS.is_Remote()){
+                b_252_2.update(CS.get_State(),false);
+                break;
+            }
+
+
             ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
             if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
             {
@@ -549,6 +585,11 @@ function updateFrameControlSwitch(xcoor,name){
             break;
 
         case "switch3":
+            if(SS.is_Remote()){
+                b_252_8.update(CS.get_State(),false);
+                break;
+            }
+
             ctx.clearRect(controlSwitch3X,controlSwitch3Y, scaleWidthCS, scaleHeightCS);
             if (xcoor < (controlSwitch3X + (scaleWidthCS / 2)))
             {

@@ -280,16 +280,17 @@ class Lockout_286_1 extends Lockout_Relay{
         }
 
     }
-    get_Breaker(){
-        if(this.breaker == "H1" && this.breaker == "H8" && this.breaker != "H2"){
-            return this.state = true;
-        }
-        else{
-            return this.state = false;
-        }
+
+  //  get_Breaker(){
+    //    if(this.breaker == "H1" && this.breaker == "H8" && this.breaker != "H2"){
+      //      return this.state = true;
+      //  }
+       // else{
+       //     return this.state = false;
+       // }
 
 
-    }
+   // }
 
     
 
@@ -322,14 +323,14 @@ class Lockout_286_2 extends Lockout_Relay{
         }
     }
     
-    get_Breaker(){
-        if(this.breaker == "H2" && this.breaker == "H8" && this.breaker != "H1"){
-            return this.state = true;
-        }
+   // get_Breaker(){
+     //   if(this.breaker == "H2" && this.breaker == "H8" && this.breaker != "H1"){
+      //      return this.state = true;
+       // }
         
 
 
-    }
+  //  }
 
     
 }
@@ -343,8 +344,11 @@ let b_252_8 = new Breaker_252("CLOSED" , 8);
 let l_286_1 = new Lockout_Relay();
 let l_286_2 = new Lockout_Relay();
 let SS = new Selector_Switch(false);
+let CS = new Control_Switch(false);
 
 let b_286_1 = new Lockout_286_1();
 let b_286_2 = new Lockout_286_2();
 let LR = new Lockout_Relay(false);
 
+
+            
