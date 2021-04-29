@@ -3,11 +3,10 @@
 var canvasWidth = 750;
 var canvasHeight = 768;
 
-var canvas = document.getElementById('canvas');
+var canvas = document.getElementById('Canvas');
 canvas.width = canvasWidth;//give attributes to canvas
 canvas.height = canvasHeight;
 var ctx = canvas.getContext('2d');
-
 //locates current desired sprite on sprite sheet
 var srcxControlSwitch1;
 var srcxControlSwitch2;
@@ -192,8 +191,12 @@ var greenLight6X = 250;var greenLight6Y = 560;
 
 var greenLight7X = 450;var greenLight7Y = 560;
 
+//blinking lockout light variables
+var blink1;
+var blink2;
 
-function display(){//Shows sprites on first refresh of page
+setTimeout(function (){//Shows sprites on first refresh of page
+    
     //lockout
     ctx.drawImage(character,sheetWidth1/2,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
     ctx.drawImage(character,sheetWidth1/2,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
@@ -218,11 +221,11 @@ function display(){//Shows sprites on first refresh of page
     ctx.drawImage(character7,0,0, widthB, heightB, greenLight2X, greenLight2Y, buttonScale, buttonScale); 
     ctx.drawImage(character7,0,0, widthB, heightB, greenLight3X, greenLight3Y, buttonScale, buttonScale); 
     //meters
-    //can be used in future projects if necessery 
+    //can be used in future projects if necessary 
     //ctx.drawImage(character8,0,0, character8.naturalWidth, character8.naturalHeight, 60, 0, 125, 70); 
    // ctx.drawImage(character9,0,0, character9.naturalWidth, character9.naturalHeight, 310, 0, 125, 70); 
    // ctx.drawImage(character10,0,0, character10.naturalWidth, character10.naturalHeight, 560, 0, 125, 70); 
-    //labels
+    // //labels
     ctx.drawImage(character11,0,0, character11.naturalWidth, character11.naturalHeight, 0, 175, 93.75, 52.5); 
     ctx.drawImage(character12,0,0, character12.naturalWidth, character12.naturalHeight, 145, 100, 93.75, 52.5); 
     ctx.drawImage(character13,0,0, character13.naturalWidth, character13.naturalHeight, 545, 100, 93.75, 52.5); 
@@ -276,7 +279,8 @@ function display(){//Shows sprites on first refresh of page
     ctx.drawImage(character6,buttonWidth/2,0, widthB, heightB, blueLight2X, blueLight2Y, buttonScale, buttonScale);
     
     
-}
+}, 700);
+
 //takes the location clicked on and connects to the right sprite to give animation
 function getCoor(event) {
     var x = event.offsetX;
@@ -301,20 +305,31 @@ function getCoor(event) {
     else if ((x > lockout1PosX && x < lockout1PosX + scaleWidth) && (y > lockout1PosY && y < lockout1PosY + scaleHeight))
     {
         //if left lock sprite is clicked on
-        if (currentframe1 % 2 == 0)
+
+        // if (is blinking && not acknowledged)
+        //     break;
+        if (currentframe1 % 2 == 1)
         {   
             openSwitch("lockout1");
-
+            blink1 = setInterval(drawLight, 250,"orange2");
             closeSwitch("CSswitch2");
          
         }
         else
         {
+           
             openSwitch("CSswitch1");
+            
             closeSwitch("lockout1");
-          
+            
         }
-        drawLight("orange2");
+        //if(lockout acknowledged)
+        //  {
+            //clearInterval(blink1);
+            //orange2frame = 0;
+            //drawLight("orange2");
+        //}
+        
         openSwitch("CSswitch1");
         openSwitch("CSswitch3");
         closeSwitch("CSswitch2");
@@ -322,19 +337,26 @@ function getCoor(event) {
     else if ((x > lockout2PosX && x < lockout2PosX + scaleWidth) && (y > lockout2PosY && y < lockout2PosY + scaleHeight))
     {
         //if right lock sprite is clicked on
-        if (currentframe2 % 2 == 0)
+        
+        // if (is blinking && not acknowledged)
+        //     break;
+        if (currentframe2 % 2 == 1)
         {
             openSwitch("lockout2");
-
+            blink2 = setInterval(drawLight, 250,"orange3");
             closeSwitch("CSswitch1");
-          
         }
         else
         {
             openSwitch("CSswitch2");
             closeSwitch("lockout2");
         }
-        drawLight("orange3");
+        //if(lockout acknowledged)
+        //  {
+            //clearInterval(blink2);
+            //orange3frame = 0;
+            //drawLight("orange3");
+        //}
         openSwitch("CSswitch2");
         openSwitch("CSswitch3");
         closeSwitch("CSswitch1");
@@ -454,12 +476,12 @@ function closeSwitch(name){
         case "lockout1" :
                 currentframe1++;
                 ctx.clearRect(lockout1PosX,lockout1PosY, scaleWidth, scaleHeight);
-                ctx.drawImage(character,0,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
+                ctx.drawImage(character,width,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
                 break;
         case "lockout2" :
                 currentframe2++;
                 ctx.clearRect(lockout2PosX,lockout2PosY, scaleWidth, scaleHeight);
-                ctx.drawImage(character,0,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
+                ctx.drawImage(character,width,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
                 break;
         case "CSswitch1" :
                 // check if off light is already on
@@ -492,6 +514,7 @@ function closeSwitch(name){
             break;
     }
 }
+
 //this gives the animation to turn a switch on
 function openSwitch(name){
     switch(name){
@@ -503,12 +526,12 @@ function openSwitch(name){
         case "lockout1" :
             currentframe1++;
             ctx.clearRect(lockout1PosX,lockout1PosY, scaleWidth, scaleHeight);
-            ctx.drawImage(character,width,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
+            ctx.drawImage(character,0,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
             break;
         case "lockout2" :
             currentframe2++;
             ctx.clearRect(lockout2PosX,lockout2PosY, scaleWidth, scaleHeight);
-            ctx.drawImage(character,width,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
+            ctx.drawImage(character,0,0, width, height, lockout2PosX, lockout2PosY, scaleWidth, scaleHeight);
             break;
         case "CSswitch1" :
             //check if on light already on
@@ -612,5 +635,7 @@ function updateFrameControlSwitch(xcoor,name){
             break;
     }
 }
-setTimeout(display,200);//calls display() after 100ms of seeing page
+//calls display() after 200ms of seeing page
+
+//var myVar = setInterval(console.log, 100,"help");
 
