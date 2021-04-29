@@ -192,6 +192,7 @@ var greenLight6X = 250;var greenLight6Y = 560;
 
 var greenLight7X = 450;var greenLight7Y = 560;
 
+
 function display(){//Shows sprites on first refresh of page
     //lockout
     ctx.drawImage(character,sheetWidth1/2,0, width, height, lockout1PosX, lockout1PosY, scaleWidth, scaleHeight);
@@ -301,21 +302,22 @@ function getCoor(event) {
     {
         //if left lock sprite is clicked on
         if (currentframe1 % 2 == 0)
-        {
+        {   
             openSwitch("lockout1");
 
-            //b_286_1.get_State(true);
             closeSwitch("CSswitch2");
-            openSwitch("CSswitch1");
-            openSwitch("CSswitch3");
+         
         }
         else
         {
+            openSwitch("CSswitch1");
             closeSwitch("lockout1");
-            closeSwitch("CSswitch1");
-           // closeSwitch("CSswitch3");
+          
         }
         drawLight("orange2");
+        openSwitch("CSswitch1");
+        openSwitch("CSswitch3");
+        closeSwitch("CSswitch2");
     }
     else if ((x > lockout2PosX && x < lockout2PosX + scaleWidth) && (y > lockout2PosY && y < lockout2PosY + scaleHeight))
     {
@@ -325,8 +327,7 @@ function getCoor(event) {
             openSwitch("lockout2");
 
             closeSwitch("CSswitch1");
-            openSwitch("CSswitch2");
-            openSwitch("CSswitch3");
+          
         }
         else
         {
@@ -334,6 +335,9 @@ function getCoor(event) {
             closeSwitch("lockout2");
         }
         drawLight("orange3");
+        openSwitch("CSswitch2");
+        openSwitch("CSswitch3");
+        closeSwitch("CSswitch1");
     }
     else if ((x > controlSwitch1X && x < controlSwitch1X + scaleWidthCS) && (y > controlSwitch1Y && y < controlSwitch1Y + scaleHeightCS))
     {
@@ -569,6 +573,10 @@ function updateFrameControlSwitch(xcoor,name){
                 break;
             }
 
+            if(b_286_1.update(true)){
+                break;
+            }
+
 
             ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
             if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
@@ -604,5 +612,5 @@ function updateFrameControlSwitch(xcoor,name){
             break;
     }
 }
-setTimeout(display,100);//calls display() after 100ms of seeing page
+setTimeout(display,200);//calls display() after 100ms of seeing page
 

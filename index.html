@@ -22,12 +22,24 @@
     <!--Alert-->
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#alertbutton').click(function(){
+            $('#acknowledge').click(function(){
                 $('#theAlert').show('fade');
             });
             $('#xbutton').click(function(){
                 $('#theAlert').hide('fade');
             });
+            $('#overvoltage').click(function() {
+                alert("Overvoltage!");
+                // Here goes the trigger for overvoltage
+            })
+            $('#undervoltage').click(function() {
+                alert("Undervoltage!");
+                // Here goes the triger for undervoltage
+            })
+            $('#remoteinputbtn').click(function() {
+                //alert( document.getElementById("command").value );
+                filter( document.getElementById("command").value );
+            })
         });
     </script>
     
@@ -65,16 +77,6 @@
             </div>
 
             <div class="col-lg-4">
-                    <!--Alertbutton-->
-                <button type="button" id=alertbutton class="btn btn-primary btn-lg">Alert HMI</button>
-                <button type="button" id=button1 class="btn btn-primary btn-lg">Button 1</button>
-                <button type="button" id=button2 class="btn btn-primary btn-lg">Button 2</button>
-                <div class="form-group">
-                    <label for="command">COMMAND:</label>
-                    <input type="text" class="form-control" id="command">
-                </div>
-
-
                 <!--ACCORDION-->
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item" >
@@ -85,6 +87,7 @@
                         </h2>
                         <div id="collapseOne" class="collapse multi-" aria-labelledby="headingOne" >
                             <div class="accordion-body" id = "accordion-body1">
+                                <button type="button" id=acknowledge class="btn btn-primary btn-lg">Acknowledge</button>
                                 <!--Alerts-->
                                 <div class="alert alert-warning collapse" id= theAlert role="alert">
                                     <strong>ALERT</strong> You have sent a Command.
@@ -100,7 +103,14 @@
                         </h2>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" >
                             <div class="accordion-body" id = "accordion-body2">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, nulla. Expedita rem quibusdam quo. Soluta porro labore doloremque veniam, error debitis tenetur laborum omnis accusantium itaque voluptas dolore voluptatem incidunt!</p>
+                                <div class="form-group">
+                                    <label for="command">COMMAND:</label>
+                                    <input type="text" class="form-control" id="command">
+                                    <button type="button" id=remoteinputbtn class="btn btn-primary btn-lg">Send Commnad</button>
+                                    <p> Here are some examples of commands </p>
+                                    <p> V_252_01_Close_CMD </p>
+
+                                </div>
                             </div>
                         </div>
                     <div class="accordion-item">
@@ -111,7 +121,8 @@
                         </h2>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" >
                             <div class="accordion-body" id = "accordion-body3">
-                                <p> Alarms go here
+                                <button type="button" id=overvoltage class="btn btn-primary btn-lg">Overvoltage</button> <br>
+                                <button type="button" id=undervoltage class="btn btn-primary btn-lg">Undervoltage</button>
                             </div>
                         </div>
 

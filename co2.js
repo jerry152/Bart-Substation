@@ -2,13 +2,11 @@
 
 // V_252_01_CLOSE_CMD
 
-
-
 function filter(cmd) {
     var details = cmd.split("_");
     // Go to the detials, run the command
 
-    var location = details[0];
+    var type = details[0];
     var breaker = details[1];
     var number = details[2];
     var state = details[3];
@@ -260,7 +258,9 @@ class Lockout_Relay {
 class Lockout_286_1 extends Lockout_Relay{
     constructor(number,state){
     //    this.breaker = breaker;
-    super(state == "H1 and H8 OPENED");
+    //super(state == "H1 and H8 OPENED");
+    super();
+        this.state = true;
         this.number = number;
       
        
@@ -268,16 +268,31 @@ class Lockout_286_1 extends Lockout_Relay{
 
     get_State(){
         if(this.state && b_286_2.state(false)){
-            this.trip();
+            //  this.trip();
             alert("Lockout 286_1 Opened")
             b_252_1.update(SS.get_State(), true);
             b_252_8.update(SS.get_State(), true);
+            b_252_2.update(SS.get_State(), false);
 
         }
         
         else{
             alert("186 Relay is not open!")
         }
+
+    }
+
+
+    update(acknowledged,state){
+
+        if(acknowledged){
+            alert("286-1 is currently open!")
+        }
+
+        else{
+            
+        }
+
 
     }
 
@@ -306,7 +321,9 @@ class Lockout_286_2 extends Lockout_Relay{
 
     constructor(number,state){
        // this.breaker = breaker;
-       super(state == "H2 and H8 OPENED");
+     //  super(state == "H2 and H8 OPENED");
+       super();
+       this.state = true;
        // this.state = state;
        this.number = number;
     }
