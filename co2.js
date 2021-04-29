@@ -6,7 +6,7 @@ function filter(cmd) {
     var details = cmd.split("_");
     // Go to the detials, run the command
 
-    var location = details[0];
+    var type = details[0];
     var breaker = details[1];
     var number = details[2];
     var state = details[3];
@@ -37,28 +37,30 @@ class AC_Properties {
     constructor() {
         this.input_kV = 34.5;
         this.max_kV = 38;
-        this.frequency = 60;
+        this.output_kV = 0;
     }
     //Getters ================================
     get_Input_Voltage(){
         return this.input_kV;
     }
-    get_frequency() {
-        return this.frequency;
-    }
-    get_max_Voltage(){
+
+    get_Max_Voltage(){
         return this.max_kV;
+    }
+
+    get_Output_Voltage() {
+        return this.output_kV;
     }
     
     //Setters ================================
-    set_frequency(frequency){
-        this.frequency = frequency;
-    }
-    set_input_Volatage(input){
+    set_Input_Voltage(input){
         this.input_kV = input;
     }
-    set_max_Voltage(max){
+    set_Max_Voltage(max){
         this.max_kV = max;
+    }
+    set_Output_Voltage(output) {
+        this.output_kV = output;
     }
 }
 
@@ -72,32 +74,32 @@ class Selector_Switch {
         this.state = state;
     }
     //Getters ================================
-    getState() {
+    get_State() {
         return this.state;
     }
 
-    getStateName() {
+    get_State_Name() {
         if( this.state )
             return "REMOTE";
         else 
             return "LOCAL";
     }
 
-    isRemote() {
+    is_Remote() {
         return this.state;
     }
 
-    isLocal() {
+    is_Local() {
         return !this.state;
     }
 
     //Setters ================================
 
-    swapState() {
+    swap_State() {
         this.state = ! this.state;
     }
 
-    setState(state){
+    set_State(state){
         this.state = state;
     }
 }
@@ -111,7 +113,7 @@ class Control_Switch extends AC_Properties {
         this.state = state;
     }
 
-    get_state() {
+    get_State() {
         if(this.state)
             return "OPENED";
         return "CLOSED";
@@ -119,20 +121,56 @@ class Control_Switch extends AC_Properties {
 
     trip() {
         this.state = true;
+        this.set_Output_Voltage( this.get_Input_Voltage() );
     }
 
     close() {
         this.state = false;
+        this.set_Output_Voltage(0);
     }
-
+    
     update( SelectorState, state ) {
         if( SelectorState ) {
             alert( "Cant do that, im in remote!" );
-            alert( SS.getStateName() );
+            alert( SS.get_State_Name() );
         } 
         else {
 
-            alert( "Local!" );
+            //alert( "Local!" );
+
+            //managed to update
+
+            //Backcode do updates
+            if(state) { //open
+                // check input/output to see if there is an over/under currents
+                this.trip();
+
+                if( this.get_Output_Voltage() > this.get_Max_Voltage() ) {
+                    // We have an over current
+                    alert("Overcurrent reading on " + String(this.num));
+
+                    this.trip();
+
+
+
+                } else {
+                    if( this.get_Output_Voltage() < 30 ) { // Temp Undercurrent Value
+                        // We have an over current Undercurrent
+                        alert("Undercurrent!")
+                        this.trip();
+                    }
+                }
+            } else {
+                // State change 
+                this.close();
+            }
+
+            //alert("Breaker" + String(this.num))
+            //Send Updates to adjacent modules
+            alert( "Breaker" + String(this.num) + " input " + String(this.get_Input_Voltage()) + "; out" + String(this.get_Output_Voltage()) );
+            //Frontend methods to send 
+            
+
 
         }
     }
@@ -145,9 +183,7 @@ class Breaker_252 extends Control_Switch {
     }
 
     test() {
-        this.set_frequency(55);
-        var text = this.get_frequency();
-        alert( text );
+        alert( "test" );
     }
 }
 
@@ -158,21 +194,32 @@ class Lockout_Relay {
         this.state = false;
     }
     //Getters ================================
-    getState(){
+    get_State(){
         return this.state;
     }
 
-    getBreaker(){
+    get_Breaker(){
         return this.state;
     }
+
+    get_StateName() {
+        if( this.state )
+            //return "RELAY TRIPPED";
+            return this.trip();
+        else 
+           // return "RESETED";
+           return this.reset();
+    }
+
+
 
     //Setters ================================
-    setState(state) {
+    set_State(state) {
         
         this.state = state;
     }
 
-    setBreaker(breaker){
+    set_Breaker(breaker){
 
         this.breaker = breaker;
     }
@@ -181,7 +228,8 @@ class Lockout_Relay {
 
         if(acknowledged){
 
-            alert();
+            alert("Open all Breakers");
+            
         }
         else{
             alert("Failed to change. Must be acknowledged first!");
@@ -191,9 +239,133 @@ class Lockout_Relay {
 
     }
 
+    trip(){
+        this.state = true;
+
+    }
+
+    close(){
+        this.state = false;
+    }
+
+
+
 
 
 }
+
+
+class Lockout_286_1 extends Lockout_Relay{
+    constructor(number,state){
+    //    this.breaker = breaker;
+    //super(state == "H1 and H8 OPENED");
+    super();
+        this.state = true;
+        this.number = number;
+      
+       
+    }
+
+    get_State(){
+        if(this.state && b_286_2.state(false)){
+            //  this.trip();
+            alert("Lockout 286_1 Opened")
+            b_252_1.update(SS.get_State(), true);
+            b_252_8.update(SS.get_State(), true);
+            b_252_2.update(SS.get_State(), false);
+
+        }
+        
+        else{
+            alert("186 Relay is not open!")
+        }
+
+    }
+
+
+    update(acknowledged,state){
+
+        if(acknowledged){
+            alert("286-1 is currently open!")
+        }
+
+        else{
+            
+        }
+
+
+    }
+
+  //  get_Breaker(){
+    //    if(this.breaker == "H1" && this.breaker == "H8" && this.breaker != "H2"){
+      //      return this.state = true;
+      //  }
+       // else{
+       //     return this.state = false;
+       // }
+
+
+   // }
+
+    
+
+    
+
+
+
+
+}
+
+
+class Lockout_286_2 extends Lockout_Relay{
+
+    constructor(number,state){
+       // this.breaker = breaker;
+     //  super(state == "H2 and H8 OPENED");
+       super();
+       this.state = true;
+       // this.state = state;
+       this.number = number;
+    }
+
+    get_State(){
+        if(this.state){
+            alert("Lockout 286_2 Opened");
+            b_252_2.update(SS.get_State(), true);
+            b_252_8.update(SS.get_State(), true);
+
+        }
+        else{
+            alert("186 Relay is not open")
+        }
+    }
+    
+   // get_Breaker(){
+     //   if(this.breaker == "H2" && this.breaker == "H8" && this.breaker != "H1"){
+      //      return this.state = true;
+       // }
+        
+
+
+  //  }
+
+    
+}
+
 //=======================================================================================
 
+let b_252_1 = new Breaker_252("CLOSED" , 1);
+let b_252_2 = new Breaker_252("CLOSED" , 2);
+let b_252_8 = new Breaker_252("CLOSED" , 8);
 
+let l_286_1 = new Lockout_Relay();
+let l_286_2 = new Lockout_Relay();
+let SS = new Selector_Switch(false);
+let CS = new Control_Switch(false);
+
+let b_286_1 = new Lockout_286_1();
+let b_286_2 = new Lockout_286_2();
+let LR = new Lockout_Relay(false);
+
+
+            

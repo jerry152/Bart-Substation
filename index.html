@@ -22,25 +22,28 @@
     <!--Alert-->
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#alertbutton').click(function(){
+            $('#acknowledge').click(function(){
                 $('#theAlert').show('fade');
             });
             $('#xbutton').click(function(){
                 $('#theAlert').hide('fade');
             });
+            $('#overvoltage').click(function() {
+                alert("Overvoltage!");
+                // Here goes the trigger for overvoltage
+            })
+            $('#undervoltage').click(function() {
+                alert("Undervoltage!");
+                // Here goes the triger for undervoltage
+            })
+            $('#remoteinputbtn').click(function() {
+                //alert( document.getElementById("command").value );
+                filter( document.getElementById("command").value );
+            })
         });
     </script>
     
-    <!--Bg-image-->
-    
-    <div class="bg-image">
-        <style>body{
-            background-image: url('https://img.wallpapersafari.com/desktop/1920/1080/53/18/pgdaL9.jpg'); 
-                height: 100vh; 
-                background-size:cover;
-                background-attachment: fixed; }
-        </style>
-</div>
+
     <!--Navibar-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top"style="background-color: #e3f2fd;">
             <div class="container-fluid">
@@ -72,8 +75,8 @@
         <!--Map-->
         <div class="row">
             <div class="col-lg-8">
-                <canvas id='canvas' onclick=getCoor(event) style="border:3px solid #000000;"><a></canvas>
-                <!-- <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+                <canvas id='canvas' onclick=getCoor(event) style="border:5px solid #000000;"><a></canvas>
+                <!-- <canvas id="myCanvas" width="902" height="768" style="border:5px solid #000000;">
 </canvas>  -->
                 <!-- <img src="testButton.png" class="img-fluid" alt="Girl in a jacket" width="100" height="100">  -->
                 <!--Any click on the canvas send coordinates to getCoor()-->
@@ -82,8 +85,6 @@
             </div>
 
             <div class="col-lg-4">
-                    <!--Alertbutton-->
-                <button type="button" id=alertbutton class="btn btn-primary btn-lg">Alert HMI</button>
                 <!--ACCORDION-->
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item" >
@@ -94,6 +95,7 @@
                         </h2>
                         <div id="collapseOne" class="collapse multi-" aria-labelledby="headingOne" >
                             <div class="accordion-body" id = "accordion-body1">
+                                <button type="button" id=acknowledge class="btn btn-primary btn-lg">Acknowledge</button>
                                 <!--Alerts-->
                                 <div class="alert alert-warning collapse" id= theAlert role="alert">
                                     <strong>ALERT</strong> You have sent a Command.
@@ -109,7 +111,14 @@
                         </h2>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" >
                             <div class="accordion-body" id = "accordion-body2">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, nulla. Expedita rem quibusdam quo. Soluta porro labore doloremque veniam, error debitis tenetur laborum omnis accusantium itaque voluptas dolore voluptatem incidunt!</p>
+                                <div class="form-group">
+                                    <label for="command">COMMAND:</label>
+                                    <input type="text" class="form-control" id="command">
+                                    <button type="button" id=remoteinputbtn class="btn btn-primary btn-lg">Send Commnad</button>
+                                    <p> Here are some examples of commands </p>
+                                    <p> V_252_01_Close_CMD </p>
+
+                                </div>
                             </div>
                         </div>
                     <div class="accordion-item">
@@ -120,7 +129,8 @@
                         </h2>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" >
                             <div class="accordion-body" id = "accordion-body3">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis molestias similique commodi quidem minus nihil animi, dicta nulla officiis eaque. Aspernatur debitis voluptates accusamus fugiat nesciunt eum sit, numquam provident?</p>
+                                <button type="button" id=overvoltage class="btn btn-primary btn-lg">Overvoltage</button> <br>
+                                <button type="button" id=undervoltage class="btn btn-primary btn-lg">Undervoltage</button>
                             </div>
                         </div>
 
@@ -139,10 +149,11 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="main.js"></script>
+   
     <script type="text/javascript" src="alarmsHistory.js"></script>
     <script type="text/javascript" src="co2.js"></script>
     <script type="text/javascript" src="animations.js"></script>
+    <script type="text/javascript" src="main.js"></script>
 
 </body>
 </html>

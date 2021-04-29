@@ -4,8 +4,10 @@
 .accordion-header{
   background-color: #e3f2fd
 }
+
 body {
     font-family: Helvetica, sans-serif;
+    background-color: #606060;
   }
 h1 {
   color: black;
