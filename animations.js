@@ -117,8 +117,8 @@ var character25 = new Image();character25.src = "sprites/cableLabel3.png";
 var character30 = new Image();character30.src = "sprites/topLeftCable.png";
 var character31 = new Image();character31.src = "sprites/topRightCable.png";
 var character32 = new Image();character32.src = "sprites/bottomCable1.png";
-var character33 = new Image();character33.src = "sprites/bottomCable2.png";
-//transformers
+var character33 = new Image();character33.src = "sprites/figureH.png";
+//transformerss
 var character34 = new Image();character34.src = "sprites/leftTransformer.png";
 var character35 = new Image();character35.src = "sprites/rightTransformer.png";
 ////changable locations of AC sprites
@@ -241,8 +241,8 @@ function display(){//Shows sprites on first refresh of page
     //Cables
     ctx.drawImage(character30,0,0, character30.naturalWidth, character30.naturalHeight, 84, 3, 253.75, 82); 
     ctx.drawImage(character31,0,0, character31.naturalWidth, character31.naturalHeight, 450, 3, 253.75, 82); 
-    ctx.drawImage(character32,0,0, character32.naturalWidth, character32.naturalHeight, 149, 672, 435.75, 82); 
-    ctx.drawImage(character33,0,0, character33.naturalWidth, character33.naturalHeight, 183, 700, 453.75, 82); 
+    ctx.drawImage(character32,0,0, character32.naturalWidth, character32.naturalHeight, 142, 672, 510.75, 82);
+    ctx.drawImage(character33,0,0, character33.naturalWidth, character33.naturalHeight, 168, 516, 400.75, 58); 
 
     //transformers
     ctx.drawImage(character34,0,0, character34.naturalWidth, character34.naturalHeight, 215, 200, 200, 300); 
