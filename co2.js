@@ -1,18 +1,5 @@
 // Testing
 
-// V_252_01_CLOSE_CMD
-
-function filter(cmd) {
-    var details = cmd.split("_");
-    // Go to the detials, run the command
-
-    var type = details[0];
-    var breaker = details[1];
-    var number = details[2];
-    var state = details[3];
-
-    update_logging(breaker + "-" + number, state);
-}
 //=======================================================================================
 //AC Requirements
 
@@ -117,6 +104,14 @@ class Control_Switch extends AC_Properties {
         if(this.state)
             return "OPENED";
         return "CLOSED";
+    }
+
+    set_State(state) {
+        if(state) {
+            this.trip();
+        } else {
+            this.close();
+        }
     }
 
     trip() {
@@ -375,11 +370,52 @@ let b_252_8 = new Breaker_252("CLOSED" , 8);
 let l_286_1 = new Lockout_Relay();
 let l_286_2 = new Lockout_Relay();
 let SS = new Selector_Switch(false);
-let CS = new Control_Switch(false);
+//let CS = new Control_Switch(false);
 
 let b_286_1 = new Lockout_286_1();
 let b_286_2 = new Lockout_286_2();
 let LR = new Lockout_Relay(false);
 
+
+// V_252_01_CLOSE_CMD
+
+function filter(cmd) {
+    var details = cmd.split("_");
+    // Go to the detials, run the command
+
+    var type = details[0];
+    var breaker = details[1];
+    var number = details[2];
+    var state = details[3].toLowerCase();
+
+    if(breaker == "252") {
+        switch(number) {
+            case "1":
+                b_252_1.set_State( state == "open" );
+                break;
+            case "2":
+                b_252_2.set_State( state == "open" );
+                break;
+            case "8":
+                b_252_8.set_State( state == "open" );
+                break;
+            default:
+                alert("Invalid ID number for Breakers 252");
+        }
+    } else {
+        if(breaker == "243") {
+            if (state == "remote") {
+                SS.set_State( true );
+            } else {
+                if(state == "local") {
+                    SS.set_State( false );
+                } else {
+                    alert("Invalid Input for Selector Switch 243")
+                }
+            }
+            
+        }
+    }
+}
 
             
