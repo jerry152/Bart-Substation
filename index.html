@@ -24,6 +24,21 @@
         $(document).ready(function(){
             $('#acknowledge').click(function(){
                 $('#theAlert').show('fade');
+
+                 if(b_286_1.blinking == 1 ){
+                     alert("Lockout 1 Reseted!");
+                     b_286_1.update(true);
+                     }
+                     else if (b_286_2.blinking == 1 ){
+                     alert("Lockout 2 Reseted!");
+                     b_286_2.update(true);
+                     
+                     }
+                     else{
+                     alert("Both Relays are not Tripped!");
+                     }
+
+
             });
             $('#xbutton').click(function(){
                 $('#theAlert').hide('fade');
@@ -67,17 +82,19 @@
     <div class="container" style="margin-top: 58px;">
         <!--Map-->
         <div class="row">
-            <div class="col-lg-8">
-                <canvas id='Canvas' onclick=getCoor(event) style="border:5px solid #000000;"><a></canvas>
-
-                <!-- <canvas id="myCanvas" width="902" height="768" style="border:5px solid #000000;">
-</canvas>  -->
-                <!-- <img src="testButton.png" class="img-fluid" alt="Girl in a jacket" width="100" height="100">  -->
-                <!--Any click on the canvas send coordinates to getCoor()-->
-                <script src="animations.js"></script>
+            <div class="col-lg-8 left">
+                <div class="row">
+                    <canvas id='Meter' width="800" height="100""><a></canvas>
+                    <script src="meter.js"></script>
+                </div>
+                <div class="row">
+                    <canvas id='Canvas' onclick=getCoor(event) ><a></canvas>
+                    <!--Any click on the canvas send coordinates to getCoor()-->
+                    <script src="animations.js"></script>
+                </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-4 right">
                 <!--ACCORDION-->
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item" >
@@ -92,6 +109,7 @@
                                 <!--Alerts-->
                                 <div class="alert alert-warning collapse" id= theAlert role="alert">
                                     <strong>ALERT</strong> You have sent a Command.
+                                    
                                     <button type="button btn-lg" id=xbutton class="btn-close" aria-label="Close"></button>
                                 </div>
                             </div>

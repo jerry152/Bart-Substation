@@ -192,6 +192,8 @@ class Breaker_252 extends Control_Switch {
 class Lockout_Relay {
     constructor() {
         this.state = false;
+        this.Clickable = true;
+        
     }
     //Getters ================================
     get_State(){
@@ -211,7 +213,18 @@ class Lockout_Relay {
            return this.reset();
     }
 
+    is_Clickable(){
+        return this.Clickable;
+    }
+    // is_Blinking(){
+    //     return this.state;
 
+    // }
+    // is_acknowledged(){
+    //     return this.state;
+    //     alert("test1");
+    // }
+    
 
     //Setters ================================
     set_State(state) {
@@ -224,20 +237,16 @@ class Lockout_Relay {
         this.breaker = breaker;
     }
 
-    update(acknowledged,state){
-
-        if(acknowledged){
-
-            alert("Open all Breakers");
-            
-        }
-        else{
-            alert("Failed to change. Must be acknowledged first!");
-        }
-
-
-
+    set_ClickableTrue(){
+        this.Clickable = true;
     }
+
+    set_ClickableFalse(){
+        this.Clickable = false;
+    }
+
+
+
 
     trip(){
         this.state = true;
@@ -257,13 +266,11 @@ class Lockout_Relay {
 
 class Lockout_286_1 extends Lockout_Relay{
     constructor(number,state){
-    //    this.breaker = breaker;
-    //super(state == "H1 and H8 OPENED");
     super();
         this.state = true;
         this.number = number;
-      
-       
+        this.blinking = 0;
+        
     }
 
     get_State(){
@@ -277,7 +284,7 @@ class Lockout_286_1 extends Lockout_Relay{
         }
         
         else{
-            alert("186 Relay is not open!")
+            alert("186 Relay is not open or 286_2 must be closed first!")
         }
 
     }
@@ -286,31 +293,26 @@ class Lockout_286_1 extends Lockout_Relay{
     update(acknowledged,state){
 
         if(acknowledged){
-            alert("286-1 is currently open!")
+
+            
+
+            clearInterval(blink1);
+            b_286_1.blinking = 0;
+            b_286_1.set_ClickableTrue();
+            b_286_2.set_ClickableTrue();
+            orange2frame = 0;
+            drawLight("orange2");
         }
 
         else{
+            alert("Nothing");
             
         }
 
 
     }
 
-  //  get_Breaker(){
-    //    if(this.breaker == "H1" && this.breaker == "H8" && this.breaker != "H2"){
-      //      return this.state = true;
-      //  }
-       // else{
-       //     return this.state = false;
-       // }
-
-
-   // }
-
-    
-
-    
-
+  
 
 
 
@@ -320,12 +322,11 @@ class Lockout_286_1 extends Lockout_Relay{
 class Lockout_286_2 extends Lockout_Relay{
 
     constructor(number,state){
-       // this.breaker = breaker;
-     //  super(state == "H2 and H8 OPENED");
+    
        super();
        this.state = true;
-       // this.state = state;
        this.number = number;
+       this.blinking = 0;
     }
 
     get_State(){
@@ -339,15 +340,28 @@ class Lockout_286_2 extends Lockout_Relay{
             alert("186 Relay is not open")
         }
     }
+
+
+    update(acknowledged,state){
+
+        if(acknowledged){
+          
+            clearInterval(blink2);
+            b_286_2.blinking = 0;
+            b_286_2.set_ClickableTrue();
+            b_286_1.set_ClickableTrue();
+            orange3frame = 0;
+            drawLight("orange3");
+        }
+
+        else{
+            alert("Nothing");
+        }
+
+
+    }
     
-   // get_Breaker(){
-     //   if(this.breaker == "H2" && this.breaker == "H8" && this.breaker != "H1"){
-      //      return this.state = true;
-       // }
-        
-
-
-  //  }
+   
 
     
 }

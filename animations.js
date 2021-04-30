@@ -115,8 +115,8 @@ var character25 = new Image();character25.src = "sprites/cableLabel3.png";
 //connecting breaker features 
 var character30 = new Image();character30.src = "sprites/topLeftCable.png";
 var character31 = new Image();character31.src = "sprites/topRightCable.png";
-var character32 = new Image();character32.src = "sprites/bottomCable1.png";
-var character33 = new Image();character33.src = "sprites/bottomCable2.png";
+var character32 = new Image();character32.src = "sprites/bottomCables.png";
+//var character33 = new Image();character33.src = "sprites/redH.png";
 //transformers
 var character34 = new Image();character34.src = "sprites/leftTransformer.png";
 var character35 = new Image();character35.src = "sprites/rightTransformer.png";
@@ -195,6 +195,8 @@ var greenLight7X = 450;var greenLight7Y = 560;
 var blink1;
 var blink2;
 
+
+
 setTimeout(function (){//Shows sprites on first refresh of page
     
     //lockout
@@ -239,13 +241,15 @@ setTimeout(function (){//Shows sprites on first refresh of page
     ctx.drawImage(character21,0,0, character21.naturalWidth, character21.naturalHeight, 145, 585, 93.75, 52.5); 
     ctx.drawImage(character22,0,0, character22.naturalWidth, character22.naturalHeight, 545, 585, 93.75, 52.5); 
     ctx.drawImage(character23,0,0, character23.naturalWidth, character23.naturalHeight, 0, 0, 93.75, 52.5); 
-    ctx.drawImage(character23,0,0, character23.naturalWidth, character23.naturalHeight, 660, 0, 93.75, 52.5); 
+    ctx.drawImage(character23,0,0, character23.naturalWidth, character23.naturalHeight, 660, 0, 93.75, 52.5);
+    ctx.drawImage(character24,0,0, character24.naturalWidth, character24.naturalHeight, 50, 645, 93.75, 52.5);
+    ctx.drawImage(character25,0,0, character25.naturalWidth, character25.naturalHeight, 50, 710, 93.75, 52.5);
 
     //Cables
     ctx.drawImage(character30,0,0, character30.naturalWidth, character30.naturalHeight, 84, 3, 253.75, 82); 
     ctx.drawImage(character31,0,0, character31.naturalWidth, character31.naturalHeight, 450, 3, 253.75, 82); 
-    ctx.drawImage(character32,0,0, character32.naturalWidth, character32.naturalHeight, 149, 672, 435.75, 82); 
-    ctx.drawImage(character33,0,0, character33.naturalWidth, character33.naturalHeight, 183, 700, 453.75, 82); 
+    ctx.drawImage(character32,0,0, character32.naturalWidth, character32.naturalHeight, 132, 657, 530, 150); 
+   // ctx.drawImage(character33,0,0, character33.naturalWidth, character33.naturalHeight, 161, 516, 412, 58); 
 
     //transformers
     ctx.drawImage(character34,0,0, character34.naturalWidth, character34.naturalHeight, 215, 200, 200, 300); 
@@ -278,6 +282,39 @@ setTimeout(function (){//Shows sprites on first refresh of page
             //blue
     ctx.drawImage(character6,buttonWidth/2,0, widthB, heightB, blueLight2X, blueLight2Y, buttonScale, buttonScale);
     
+    //cabe lines to connect breaker and the lines 
+    ctx.beginPath();
+    ctx.moveTo(292, 147);
+    ctx.lineTo(292, 275);
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = "#000000";
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(495, 147);
+    ctx.lineTo(495, 275);
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = "#000000";
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(292, 515);
+    ctx.lineTo(292, 575);
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = "#ff0000";
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(493, 515);
+    ctx.lineTo(493, 575);
+    ctx.lineWidth = 6;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(292, 542.5);
+    ctx.lineTo(493, 542.5);
+    ctx.lineWidth = 6;
+    ctx.stroke();
     
 }, 700);
 
@@ -308,21 +345,30 @@ function getCoor(event) {
 
         // if (is blinking && not acknowledged)
         //     break;
-        if (currentframe1 % 2 == 1)
-        {   
-            openSwitch("lockout1");
-            blink1 = setInterval(drawLight, 250,"orange2");
-            closeSwitch("CSswitch2");
-         
-        }
-        else
+        if (b_286_1.is_Clickable() )
         {
-           
-            openSwitch("CSswitch1");
+        
+            if (currentframe1 % 2 == 1)
+            {   
+                openSwitch("lockout1");
+                blink1 = setInterval(drawLight, 250,"orange2");
+                b_286_1.blinking = 1;
+                b_286_1.set_ClickableFalse();
+                b_286_2.set_ClickableFalse();
+                
+                openSwitch("CSswitch1");
+                openSwitch("CSswitch3");
+                closeSwitch("CSswitch2");
             
-            closeSwitch("lockout1");
-            
-        }
+            }
+            else
+            {
+                drawLight("orange2");
+                closeSwitch("lockout1");
+                closeSwitch("CSswitch1")
+                
+            }
+        
         //if(lockout acknowledged)
         //  {
             //clearInterval(blink1);
@@ -330,51 +376,59 @@ function getCoor(event) {
             //drawLight("orange2");
         //}
         
-        openSwitch("CSswitch1");
-        openSwitch("CSswitch3");
-        closeSwitch("CSswitch2");
+        
+        }
     }
     else if ((x > lockout2PosX && x < lockout2PosX + scaleWidth) && (y > lockout2PosY && y < lockout2PosY + scaleHeight))
     {
         //if right lock sprite is clicked on
-        
-        // if (is blinking && not acknowledged)
-        //     break;
-        if (currentframe2 % 2 == 1)
+
+        if (b_286_2.is_Clickable() )
         {
-            openSwitch("lockout2");
-            blink2 = setInterval(drawLight, 250,"orange3");
-            closeSwitch("CSswitch1");
+    
+            if (currentframe2 % 2 == 1)
+            {
+                openSwitch("lockout2");
+                blink2 = setInterval(drawLight, 250,"orange3");
+                b_286_2.blinking = 1;
+                b_286_2.set_ClickableFalse();
+                b_286_1.set_ClickableFalse();
+                openSwitch("CSswitch2");
+                openSwitch("CSswitch3");
+                closeSwitch("CSswitch1");
+            }
+            else
+            {
+                drawLight("orange3");
+                closeSwitch("lockout2");
+                closeSwitch("CSswitch2")
+            }
+            //if(lockout acknowledged)
+            //  {
+                //clearInterval(blink2);
+                //orange3frame = 0;
+                //drawLight("orange3");
+            //}
+           
         }
-        else
-        {
-            openSwitch("CSswitch2");
-            closeSwitch("lockout2");
-        }
-        //if(lockout acknowledged)
-        //  {
-            //clearInterval(blink2);
-            //orange3frame = 0;
-            //drawLight("orange3");
-        //}
-        openSwitch("CSswitch2");
-        openSwitch("CSswitch3");
-        closeSwitch("CSswitch1");
     }
     else if ((x > controlSwitch1X && x < controlSwitch1X + scaleWidthCS) && (y > controlSwitch1Y && y < controlSwitch1Y + scaleHeightCS))
     {
         //if controlswitch sprite is clicked on
-        updateFrameControlSwitch(x,"switch1");
+        if (!b_286_1.state && !b_286_2.state)
+            updateFrameControlSwitch(x,"switch1");
     }
     else if ((x > controlSwitch2X && x < controlSwitch2X + scaleWidthCS) && (y > controlSwitch2Y && y < controlSwitch2Y + scaleHeightCS))
     {
         //if controlswitch sprite is clicked on
-        updateFrameControlSwitch(x,"switch2");
+        if (!b_286_1.state && !b_286_2.state)
+            updateFrameControlSwitch(x,"switch2");
     }
     else if ((x > controlSwitch3X && x < controlSwitch3X + scaleWidthCS) && (y > controlSwitch3Y && y < controlSwitch3Y + scaleHeightCS))
     {
         //if controlswitch sprite is clicked on
-        updateFrameControlSwitch(x,"switch3");
+        if (!b_286_1.state && !!b_286_2.state)
+            updateFrameControlSwitch(x,"switch3");
     }
 }
     //based on desired light, this clears the desired sprite and updates frame # to
@@ -638,4 +692,3 @@ function updateFrameControlSwitch(xcoor,name){
 //calls display() after 200ms of seeing page
 
 //var myVar = setInterval(console.log, 100,"help");
-
