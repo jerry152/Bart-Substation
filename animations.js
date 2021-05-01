@@ -353,6 +353,7 @@ function getCoor(event) {
                 openSwitch("lockout1");
                 blink1 = setInterval(drawLight, 250,"orange2");
                 b_286_1.blinking = 1;
+                b_286_1.set_State(true);
                 b_286_1.set_ClickableFalse();
                 b_286_2.set_ClickableFalse();
                 
@@ -363,6 +364,7 @@ function getCoor(event) {
             }
             else
             {
+                b_286_1.set_State(false);
                 drawLight("orange2");
                 closeSwitch("lockout1");
                 closeSwitch("CSswitch1")
@@ -391,6 +393,7 @@ function getCoor(event) {
                 openSwitch("lockout2");
                 blink2 = setInterval(drawLight, 250,"orange3");
                 b_286_2.blinking = 1;
+                b_286_2.set_State(true);
                 b_286_2.set_ClickableFalse();
                 b_286_1.set_ClickableFalse();
                 openSwitch("CSswitch2");
@@ -399,6 +402,7 @@ function getCoor(event) {
             }
             else
             {
+                b_286_2.set_State(false);
                 drawLight("orange3");
                 closeSwitch("lockout2");
                 closeSwitch("CSswitch2")
@@ -427,7 +431,7 @@ function getCoor(event) {
     else if ((x > controlSwitch3X && x < controlSwitch3X + scaleWidthCS) && (y > controlSwitch3Y && y < controlSwitch3Y + scaleHeightCS))
     {
         //if controlswitch sprite is clicked on
-        if (!b_286_1.state && !!b_286_2.state)
+        if (!b_286_1.state && !b_286_2.state)
             updateFrameControlSwitch(x,"switch3");
     }
 }
@@ -436,12 +440,12 @@ function getCoor(event) {
 function updateLight(light){
     switch(light){
         case "orange1":
-                orange1frame = ++orange1frame % cols;
-                srcxOrangeLight = orange1frame * widthB;
-                ctx.clearRect(orangeLight1X,orangeLight1Y,buttonScale, buttonScale);
-                blue1frame = ++blue1frame % cols;
-                srcxBlueLight = blue1frame * widthB;
-                ctx.clearRect(blueLightX,blueLightY,buttonScale,buttonScale);
+            orange1frame = ++orange1frame % cols;
+            srcxOrangeLight = orange1frame * widthB;
+            ctx.clearRect(orangeLight1X,orangeLight1Y,buttonScale, buttonScale);
+            blue1frame = ++blue1frame % cols;
+            srcxBlueLight = blue1frame * widthB;
+            ctx.clearRect(blueLightX,blueLightY,buttonScale,buttonScale);
             break;
         
         case "orange2":
@@ -650,9 +654,7 @@ function updateFrameControlSwitch(xcoor,name){
                 break;
             }
 
-            if(b_286_1.update(true)){
-                break;
-            }
+            
 
 
             ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
