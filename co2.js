@@ -413,7 +413,6 @@ function filter(cmd) {
                     alert("Invalid Input for Selector Switch 243")
                 }
             }
-            
         }
     }
 }
