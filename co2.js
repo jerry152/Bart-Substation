@@ -354,6 +354,7 @@ class Lockout_286_2 extends Lockout_Relay{
     get_State(){
         if(this.state){
             alert("Lockout 286_2 Opened");
+            b_252_1.update(SS.get_State(), false);
             b_252_2.update(SS.get_State(), true);
             b_252_8.update(SS.get_State(), true);
 
