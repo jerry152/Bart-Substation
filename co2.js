@@ -190,7 +190,7 @@ class Control_Switch extends AC_Properties {
 
             //alert("Breaker" + String(this.num))
             //Send Updates to adjacent modules
-            alert( "Breaker" + String(this.num) + " input " + String(this.get_Input_Voltage()) + "; out" + String(this.get_Output_Voltage()) );
+            //alert( "Breaker" + String(this.num) + " input " + String(this.get_Input_Voltage()) + "; out" + String(this.get_Output_Voltage()) );
             //Frontend methods to send 
             
 
@@ -444,6 +444,8 @@ function filter(cmd) {
     var number = details[2];
     var state = details[3].toLowerCase();
 
+    if( SS.get_State() ) {
+
     if(breaker == "252") {
         switch(number) {
             case "1":
@@ -496,6 +498,9 @@ function filter(cmd) {
                 }
             }
         }
+    }
+    } else {
+        alert("Selector Switch must be on REMOTE!");
     }
 }
 

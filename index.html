@@ -24,20 +24,26 @@
         $(document).ready(function(){
             $('#acknowledge').click(function(){
                 $('#theAlert').show('fade');
+            var alerted = localStorage.getItem('alerted') || '';
+        
 
                  if(b_286_1.blinking == 1 ){
+                     if(alerted != 'yes'){
                      alert("Lockout 1 Reseted!");
+                     }
                      b_286_1.update(true);
                      }
                      else if (b_286_2.blinking == 1 ){
+                    if(alerted != 'yes'){
                      alert("Lockout 2 Reseted!");
+                    }
                      b_286_2.update(true);
                      
                      }
                      else{
                      alert("Both Relays are not Tripped!");
                      }
-
+            localStorage.setItem('alerted', 'yes');
 
             });
             $('#xbutton').click(function(){
