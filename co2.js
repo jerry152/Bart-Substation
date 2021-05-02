@@ -485,9 +485,11 @@ function filter(cmd) {
         if(breaker == "243") {
             if (state == "remote") {
                 SS.set_State( true );
+                openSwitch("selector");
             } else {
                 if(state == "local") {
                     SS.set_State( false );
+                    closeSwitch("selector");
                 } else {
                     alert("Invalid Input for Selector Switch 243")
                 }
