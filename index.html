@@ -43,12 +43,24 @@
             $('#xbutton').click(function(){
                 $('#theAlert').hide('fade');
             });
-            $('#overvoltage').click(function() {
-                alert("Overvoltage!");
+            $('#overcurrent01').click(function() {
+                // alert("Overcurrent! 01");
+                overCurrentAlarm(1);
                 // Here goes the trigger for overvoltage
             })
-            $('#undervoltage').click(function() {
-                alert("Undervoltage!");
+            $('#undervoltage01').click(function() {
+                // alert("Undervoltage! 01");
+                underVoltageAlarm(1);
+                // Here goes the trigger for undervoltage
+            })
+            $('#overcurrent02').click(function() {
+                // alert("Overcurrent! 02");
+                overCurrentAlarm(2);
+                // Here goes the trigger for overvoltage
+            })
+            $('#undervoltage02').click(function() {
+                // alert("Undervoltage! 02");
+                underVoltageAlarm(2);
                 // Here goes the trigger for undervoltage
             })
             $('#remoteinputbtn').click(function() {
@@ -140,8 +152,10 @@
                         </h2>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" >
                             <div class="accordion-body" id = "accordion-body3">
-                                <button type="button" id=overvoltage class="btn btn-primary btn-lg">Overvoltage</button> <br>
-                                <button type="button" id=undervoltage class="btn btn-primary btn-lg">Undervoltage</button>
+                                <button type="button" id=overcurrent01 class="btn btn-primary btn-lg" >Overcurrent 252-01</button> <br>
+                                <button type="button" id=undervoltage01 class="btn btn-primary btn-lg">Undervoltage 252-01</button> <br>
+                                <button type="button" id=overcurrent02 class="btn btn-primary btn-lg" >Overcurrent 252-02</button> <br>
+                                <button type="button" id=undervoltage02 class="btn btn-primary btn-lg">Undervoltage 252-02</button>
                             </div>
                         </div>
 

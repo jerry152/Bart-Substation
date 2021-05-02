@@ -23,6 +23,7 @@
 class AC_Properties {
     constructor() {
         this.input_kV = 34.5;
+        this.min_kV = 30;
         this.max_kV = 38;
         this.output_kV = 0;
     }
@@ -35,6 +36,10 @@ class AC_Properties {
         return this.max_kV;
     }
 
+    get_Min_Voltage() {
+        return this.min_kV;
+    }
+
     get_Output_Voltage() {
         return this.output_kV;
     }
@@ -42,9 +47,6 @@ class AC_Properties {
     //Setters ================================
     set_Input_Voltage(input){
         this.input_kV = input;
-    }
-    set_Max_Voltage(max){
-        this.max_kV = max;
     }
     set_Output_Voltage(output) {
         this.output_kV = output;
@@ -95,9 +97,10 @@ class Selector_Switch {
 //Control Switch: 
 class Control_Switch extends AC_Properties {
 
-    constructor(state) {
+    constructor(state, num) {
         super();
         this.state = state;
+        this.num = num;
     }
 
     get_State() {
@@ -122,6 +125,31 @@ class Control_Switch extends AC_Properties {
     close() {
         this.state = false;
         this.set_Output_Voltage(0);
+    }
+
+    overCurrent() { //Overcurrent N Alarm
+        this.set_Input_Voltage(40.0);
+
+        this.trip(); 
+        
+        switch( this.num ) {
+            case 1: //Left Breaker 252
+                //Activate Left Lockout
+                b_286_1.trip();
+                break;
+            case 2:
+                //Activate Right Lockout
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    underVoltage() { //UnderVoltage N Alarm
+        this.set_Input_Voltage(20);
+        
+        this.trip();
     }
     
     update( SelectorState, state ) {
@@ -173,8 +201,7 @@ class Control_Switch extends AC_Properties {
 
 class Breaker_252 extends Control_Switch {
     constructor(state, num) {
-        super( state == "OPENED" );
-        this.num = num;
+        super( state == "OPENED", num );
     }
 
     test() {
@@ -262,7 +289,7 @@ class Lockout_Relay {
 class Lockout_286_1 extends Lockout_Relay{
     constructor(number,state){
     super();
-        this.state = false;
+        this.state = true;
         this.number = number;
         this.blinking = 0;
         
@@ -319,7 +346,7 @@ class Lockout_286_2 extends Lockout_Relay{
     constructor(number,state){
     
        super();
-       this.state = false;
+       this.state = true;
        this.number = number;
        this.blinking = 0;
     }
@@ -377,7 +404,35 @@ let b_286_2 = new Lockout_286_2();
 let LR = new Lockout_Relay(false);
 
 
-// V_252_01_CLOSE_CMD
+function overCurrentAlarm(num) {
+    alert("Overcurrent on " + String(num));
+
+    switch(num) {
+        case 1:
+            b_252_1.overCurrent();
+            break;
+        case 2:
+            b_252_2.overCurrent();
+        break;
+        default:
+            alert("Invalid breaker Number");
+    }
+}
+
+function underVoltageAlarm(num) {
+    alert("Undervoltage on " + String(num));
+
+    switch(num) {
+        case 1:
+            b_252_1.underVoltage();
+            break;
+        case 2:
+            b_252_2.underVoltage();
+        break;
+        default:
+            alert("Invalid breaker Number");
+    }
+}
 
 function filter(cmd) {
     var details = cmd.split("_");
