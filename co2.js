@@ -289,7 +289,7 @@ class Lockout_Relay {
 class Lockout_286_1 extends Lockout_Relay{
     constructor(number,state){
     super();
-        this.state = true;
+        this.state = false;
         this.number = number;
         this.blinking = 0;
         
@@ -346,7 +346,7 @@ class Lockout_286_2 extends Lockout_Relay{
     constructor(number,state){
     
        super();
-       this.state = true;
+       this.state = false;
        this.number = number;
        this.blinking = 0;
     }

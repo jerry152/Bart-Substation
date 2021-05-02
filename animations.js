@@ -355,7 +355,7 @@ function getCoor(event) {
                 b_286_1.blinking = 1;
                 b_286_1.set_State(true);
                 b_286_1.set_ClickableFalse();
-                b_286_2.set_ClickableFalse();
+                //b_286_2.set_ClickableFalse();
                 
                 openSwitch("CSswitch1");
                 openSwitch("CSswitch3");
@@ -395,7 +395,7 @@ function getCoor(event) {
                 b_286_2.blinking = 1;
                 b_286_2.set_State(true);
                 b_286_2.set_ClickableFalse();
-                b_286_1.set_ClickableFalse();
+                //b_286_1.set_ClickableFalse();
                 openSwitch("CSswitch2");
                 openSwitch("CSswitch3");
                 closeSwitch("CSswitch1");
