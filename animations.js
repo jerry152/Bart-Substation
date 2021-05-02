@@ -248,7 +248,7 @@ setTimeout(function (){//Shows sprites on first refresh of page
     //Cables
     ctx.drawImage(character26,0,0, character26.naturalWidth, character26.naturalHeight, 84, 3, 253.75, 82); 
     ctx.drawImage(character27,0,0, character27.naturalWidth, character27.naturalHeight, 450, 3, 253.75, 82); 
-    ctx.drawImage(character28,0,0, character28.naturalWidth, character28.naturalHeight, 132, 657, 530, 150); 
+    //ctx.drawImage(character28,0,0, character28.naturalWidth, character28.naturalHeight, 132, 657, 530, 150); 
    // ctx.drawImage(character33,0,0, character33.naturalWidth, character33.naturalHeight, 161, 516, 412, 58); 
 
     //transformers
@@ -294,14 +294,12 @@ setTimeout(function (){//Shows sprites on first refresh of page
     ctx.moveTo(495, 147);
     ctx.lineTo(495, 275);
     ctx.lineWidth = 6;
-    ctx.strokeStyle = "#000000";
     ctx.stroke();
 
     ctx.beginPath();
     ctx.moveTo(292, 515);
     ctx.lineTo(292, 575);
     ctx.lineWidth = 6;
-    ctx.strokeStyle = "#ff0000";
     ctx.stroke();
 
     ctx.beginPath();
@@ -313,6 +311,30 @@ setTimeout(function (){//Shows sprites on first refresh of page
     ctx.beginPath();
     ctx.moveTo(292, 542.5);
     ctx.lineTo(493, 542.5);
+    ctx.lineWidth = 6;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(190, 690);
+    ctx.lineTo(570, 690);
+    ctx.lineWidth = 6;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(190, 720);
+    ctx.lineTo(570, 720);
+    ctx.lineWidth = 6;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(493, 720);
+    ctx.lineTo(493, 700);
+    ctx.lineWidth = 6;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(292, 690);
+    ctx.lineTo(292, 670);
     ctx.lineWidth = 6;
     ctx.stroke();
     
