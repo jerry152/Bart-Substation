@@ -113,13 +113,13 @@ var character24 = new Image();character24.src = "sprites/cableLabel2.png";
 var character25 = new Image();character25.src = "sprites/cableLabel3.png";
 
 //connecting breaker features 
-var character30 = new Image();character30.src = "sprites/topLeftCable.png";
-var character31 = new Image();character31.src = "sprites/topRightCable.png";
-var character32 = new Image();character32.src = "sprites/bottomCables.png";
+var character26 = new Image();character26.src = "sprites/topLeftCable.png";
+var character27 = new Image();character27.src = "sprites/topRightCable.png";
+var character28 = new Image();character28.src = "sprites/bottomCables.png";
 //var character33 = new Image();character33.src = "sprites/redH.png";
 //transformers
-var character34 = new Image();character34.src = "sprites/leftTransformer.png";
-var character35 = new Image();character35.src = "sprites/rightTransformer.png";
+var character29 = new Image();character29.src = "sprites/leftTransformer.png";
+var character30 = new Image();character30.src = "sprites/rightTransformer.png";
 ////changable locations of AC sprites
 //lockout
 var lockout1PosX = 0;var lockout1PosY = 250;
@@ -246,14 +246,14 @@ setTimeout(function (){//Shows sprites on first refresh of page
     ctx.drawImage(character25,0,0, character25.naturalWidth, character25.naturalHeight, 50, 710, 93.75, 52.5);
 
     //Cables
-    ctx.drawImage(character30,0,0, character30.naturalWidth, character30.naturalHeight, 84, 3, 253.75, 82); 
-    ctx.drawImage(character31,0,0, character31.naturalWidth, character31.naturalHeight, 450, 3, 253.75, 82); 
-    ctx.drawImage(character32,0,0, character32.naturalWidth, character32.naturalHeight, 132, 657, 530, 150); 
+    ctx.drawImage(character26,0,0, character26.naturalWidth, character26.naturalHeight, 84, 3, 253.75, 82); 
+    ctx.drawImage(character27,0,0, character27.naturalWidth, character27.naturalHeight, 450, 3, 253.75, 82); 
+    ctx.drawImage(character28,0,0, character28.naturalWidth, character28.naturalHeight, 132, 657, 530, 150); 
    // ctx.drawImage(character33,0,0, character33.naturalWidth, character33.naturalHeight, 161, 516, 412, 58); 
 
     //transformers
-    ctx.drawImage(character34,0,0, character34.naturalWidth, character34.naturalHeight, 215, 200, 200, 300); 
-    ctx.drawImage(character35,0,0, character35.naturalWidth, character35.naturalHeight, 371, 200, 200, 300); 
+    ctx.drawImage(character29,0,0, character29.naturalWidth, character29.naturalHeight, 215, 200, 200, 300); 
+    ctx.drawImage(character30,0,0, character30.naturalWidth, character30.naturalHeight, 371, 200, 200, 300); 
 
     //DC Sprites
         //CS
@@ -323,7 +323,7 @@ function getCoor(event) {
     var x = event.offsetX;
     var y = event.offsetY;
 
-    if ((x > selectorPosX && x < selectorPosX + scaleWidth)&& (y > selectorPosY && y < selectorPosY + scaleHeight))
+    if ((x > selectorPosX && x < selectorPosX + scaleWidth) && (y > selectorPosY && y < selectorPosY + scaleHeight))
     {
         //if selector sprite is clicked on
         if (currentframe3 % 2 == 0)
@@ -419,19 +419,19 @@ function getCoor(event) {
     else if ((x > controlSwitch1X && x < controlSwitch1X + scaleWidthCS) && (y > controlSwitch1Y && y < controlSwitch1Y + scaleHeightCS))
     {
         //if controlswitch sprite is clicked on
-        if (!b_286_1.state && !b_286_2.state)
+        if (!b_286_1.state && !b_286_2.state && !(b_252_2.state && b_252_8.state))
             updateFrameControlSwitch(x,"switch1");
     }
     else if ((x > controlSwitch2X && x < controlSwitch2X + scaleWidthCS) && (y > controlSwitch2Y && y < controlSwitch2Y + scaleHeightCS))
     {
         //if controlswitch sprite is clicked on
-        if (!b_286_1.state && !b_286_2.state)
+        if (!b_286_1.state && !b_286_2.state && !(b_252_1.state && b_252_8.state))
             updateFrameControlSwitch(x,"switch2");
     }
     else if ((x > controlSwitch3X && x < controlSwitch3X + scaleWidthCS) && (y > controlSwitch3Y && y < controlSwitch3Y + scaleHeightCS))
     {
         //if controlswitch sprite is clicked on
-        if (!b_286_1.state && !b_286_2.state)
+        if (!b_286_1.state && !b_286_2.state && !(b_252_1.state && b_252_2.state))
             updateFrameControlSwitch(x,"switch3");
     }
 }
@@ -653,10 +653,6 @@ function updateFrameControlSwitch(xcoor,name){
                 b_252_2.update(CS.get_State(),false);
                 break;
             }
-
-            
-
-
             ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
             if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
             {
@@ -691,6 +687,4 @@ function updateFrameControlSwitch(xcoor,name){
             break;
     }
 }
-//calls display() after 200ms of seeing page
 
-//var myVar = setInterval(console.log, 100,"help");
