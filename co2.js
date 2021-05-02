@@ -446,13 +446,37 @@ function filter(cmd) {
     if(breaker == "252") {
         switch(number) {
             case "1":
+                //alert( state == "open" );
                 b_252_1.set_State( state == "open" );
+                
+                // alert( b_252_1.get_State() );
+
+                if( b_252_1.get_State() == "CLOSED" ) {
+                    closeSwitch("CSswitch1");
+                } else {
+                    openSwitch("CSswitch1");
+                }
+                
                 break;
             case "2":
                 b_252_2.set_State( state == "open" );
+
+                if( b_252_2.get_State() == "CLOSED" ) {
+                    closeSwitch("CSswitch2");
+                } else {
+                    openSwitch("CSswitch2");
+                }
+
                 break;
             case "8":
                 b_252_8.set_State( state == "open" );
+
+                if( b_252_8.get_State() == "CLOSED" ) {
+                    closeSwitch("CSswitch3");
+                } else {
+                    openSwitch("CSswitch3");
+                }
+
                 break;
             default:
                 alert("Invalid ID number for Breakers 252");
