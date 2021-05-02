@@ -22,8 +22,8 @@ p {
 .col-lg-8{
   position: absolute;
 }
-.row{
-  position:relative;
+.left, .right{
+  position: relative;
 }
 @media screen and (min-width : 1400px) {
   .right {
