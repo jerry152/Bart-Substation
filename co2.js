@@ -139,6 +139,7 @@ class Control_Switch extends AC_Properties {
                 break;
             case 2:
                 //Activate Right Lockout
+                b_286_2.trip();
                 break;
             default:
                 break;
@@ -170,7 +171,7 @@ class Control_Switch extends AC_Properties {
 
                 if( this.get_Output_Voltage() > this.get_Max_Voltage() ) {
                     // We have an over current
-                    alert("Overcurrent reading on " + String(this.num));
+                    // alert("Overcurrent reading on " + String(this.num));
 
                     this.trip();
 
@@ -179,8 +180,9 @@ class Control_Switch extends AC_Properties {
                 } else {
                     if( this.get_Output_Voltage() < 30 ) { // Temp Undercurrent Value
                         // We have an over current Undercurrent
-                        alert("Undercurrent!")
+                        // alert("Undercurrent!")
                         this.trip();
+                                            
                     }
                 }
             } else {
@@ -271,6 +273,7 @@ class Lockout_Relay {
 
 
     trip(){
+
         this.state = true;
 
     }
@@ -304,6 +307,17 @@ class Lockout_286_1 extends Lockout_Relay{
             b_252_2.update(SS.get_State(), false);
 
         }
+
+        if(b_252_1.get_Output_Voltage() < 30 || b_252_8.get_Output_Voltage() < 30 ){
+
+            clearInterval(blink2);
+            b_286_2.blinking = 0;
+            b_286_2.set_ClickableTrue();
+            b_286_1.set_ClickableTrue();
+            orange3frame = 0;
+            drawLight("orange3");
+
+            }
         
         else{
             alert("186 Relay is not open or 286_2 must be closed first!")
@@ -324,6 +338,9 @@ class Lockout_286_1 extends Lockout_Relay{
             b_286_2.set_ClickableTrue();
             orange2frame = 0;
             drawLight("orange2");
+
+            
+
         }
 
         else{
@@ -362,6 +379,19 @@ class Lockout_286_2 extends Lockout_Relay{
         else{
             alert("186 Relay is not open")
         }
+
+        if(b_252_2.get_Output_Voltage() < 30 || b_252_8.get_Output_Voltage() < 30 ){
+
+            clearInterval(blink2);
+            b_286_2.blinking = 0;
+            b_286_2.set_ClickableTrue();
+            b_286_1.set_ClickableTrue();
+            orange3frame = 0;
+            drawLight("orange3");
+
+            }
+
+
     }
 
 
@@ -406,7 +436,7 @@ let LR = new Lockout_Relay(false);
 
 
 function overCurrentAlarm(num) {
-    alert("Overcurrent on " + String(num));
+    // alert("Overcurrent on " + String(num));
 
     switch(num) {
         case 1:
@@ -421,11 +451,12 @@ function overCurrentAlarm(num) {
 }
 
 function underVoltageAlarm(num) {
-    alert("Undervoltage on " + String(num));
+    // alert("Undervoltage on " + String(num));
 
     switch(num) {
         case 1:
             b_252_1.underVoltage();
+            
             break;
         case 2:
             b_252_2.underVoltage();
