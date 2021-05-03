@@ -120,11 +120,17 @@ class Control_Switch extends AC_Properties {
     trip() {
         this.state = true;
         this.set_Output_Voltage( this.get_Input_Voltage() );
+
+        openSwitch("CSswitch" + String(this.num)); 
+
     }
 
     close() {
         this.state = false;
         this.set_Output_Voltage(0);
+
+        closeSwitch("CSswitch" + String(this.num));
+
     }
 
     overCurrent() { //Overcurrent N Alarm
@@ -214,9 +220,11 @@ class Breaker_252 extends Control_Switch {
 //=======================================================================================
 //Lockout_Relay: 
 class Lockout_Relay {
-    constructor() {
+    constructor(number) {
         this.state = false;
-        this.Clickable = true;
+        this.num = number;
+        this.blinking = 0;
+        this.acknowledged = false;
         
     }
     //Getters ================================
@@ -224,73 +232,104 @@ class Lockout_Relay {
         return this.state;
     }
 
-    get_Breaker(){
-        return this.state;
+    is_Acknowledged() {
+        return this.acknowledged;
     }
-
-    get_StateName() {
-        if( this.state )
-            //return "RELAY TRIPPED";
-            return this.trip();
-        else 
-           // return "RESETED";
-           return this.reset();
-    }
-
-    is_Clickable(){
-        return this.Clickable;
-    }
-    // is_Blinking(){
-    //     return this.state;
-
-    // }
-    // is_acknowledged(){
-    //     return this.state;
-    //     alert("test1");
-    // }
-    
 
     //Setters ================================
     set_State(state) {
-        
         this.state = state;
     }
 
-    set_Breaker(breaker){
-
-        this.breaker = breaker;
+    set_Acknowledged(acknowledged) {
+        this.acknowledged = acknowledged;
     }
 
-    set_ClickableTrue(){
-        this.Clickable = true;
+    acknowledging() {
+        this.set_Acknowledged(true);
+        
+        switch( this.num ) {
+            case 1:
+                clearInterval(blink1);
+                orange2frame = 0;
+                drawLight("orange2");
+                break;
+            case 2:
+                clearInterval(blink2);
+                orange3frame = 0;
+                drawLight("orange3");
+                break;
+        }
+
+        
     }
 
-    set_ClickableFalse(){
-        this.Clickable = false;
+    trip() {
+        //Do the Opening Animations
+
+        alert("trip Command on 286 " + String( this.num ));
+
+        switch( this.num ) {
+            case 1:
+                //Do the animations for Left LR
+                alert("Left Lockout Trip Command");
+                openSwitch("lockout1");
+                blink1 = setInterval(drawLight, 250,"orange2");
+                this.blinking = 1;
+                this.set_State(true);
+                this.set_Acknowledged(false);
+                
+                b_252_1.trip();
+                b_252_8.trip();
+                b_252_2.close();
+            
+                break;
+            case 2:
+                //Do the animations for Right LR
+                alert("Left Lockout Trip Command");
+                openSwitch("lockout2");
+                blink2 = setInterval(drawLight, 250,"orange3");
+                this.blinking = 1;
+                this.set_State(true);
+                this.set_Acknowledged(false);
+                
+                b_252_2.trip();
+                b_252_8.trip();
+                b_252_1.close();
+                break;
+        }
     }
 
-
-
-
-    trip(){
-
-        this.state = true;
-
+    close() {
+        if( this.is_Acknowledged() && this.get_State() ) {
+            this.set_State(false);
+            this.set_Acknowledged(false);
+            switch( this.num ) {
+                case 1:
+                    drawLight("orange2");
+                    closeSwitch("lockout1");
+                    b_252_1.close();
+                    closeSwitch("CSswitch1"); 
+                    b_252_8.close();
+                    closeSwitch("CSswitch3");
+                    break;
+                case 2:
+                    drawLight("orange3");
+                    closeSwitch("lockout2");
+                    b_252_2.close();
+                    closeSwitch("CSswitch2"); 
+                    b_252_8.close();
+                    closeSwitch("CSswitch3");
+                    break;
+            }
+            
+        }
     }
-
-    close(){
-        this.state = false;
-    }
-
-
-
-
-
 }
 
 
 class Lockout_286_1 extends Lockout_Relay{
-    constructor(number,state){
+    constructor(number, state){
     super();
         this.state = false;
         this.number = number;
@@ -423,16 +462,13 @@ class Lockout_286_2 extends Lockout_Relay{
 
 let b_252_1 = new Breaker_252("CLOSED" , 1);
 let b_252_2 = new Breaker_252("CLOSED" , 2);
-let b_252_8 = new Breaker_252("CLOSED" , 8);
+let b_252_8 = new Breaker_252("CLOSED" , 3);
 
-let l_286_1 = new Lockout_Relay();
-let l_286_2 = new Lockout_Relay();
+let b_286_1 = new Lockout_Relay(1);
+let b_286_2 = new Lockout_Relay(2);
 let SS = new Selector_Switch(false);
 //let CS = new Control_Switch(false);
 
-let b_286_1 = new Lockout_286_1();
-let b_286_2 = new Lockout_286_2();
-let LR = new Lockout_Relay(false);
 
 
 function overCurrentAlarm(num) {

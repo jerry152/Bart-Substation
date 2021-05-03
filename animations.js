@@ -7,6 +7,8 @@ var canvas = document.getElementById('Canvas');
 canvas.width = canvasWidth;//give attributes to canvas
 canvas.height = canvasHeight;
 var ctx = canvas.getContext('2d');
+
+
 //locates current desired sprite on sprite sheet
 var srcxControlSwitch1;
 var srcxControlSwitch2;
@@ -88,12 +90,12 @@ var character6 = new Image();character6.src = "sprites/blueLight.png";
 var character7 = new Image();character7.src = "sprites/greenLight.png";
 
 //extra meters
-    //meter1
-    //var character8 = new Image();character8.src = "sprites/meter1.png";
-    //meter2
-    //var character9 = new Image();character9.src = "sprites/meter2.png";
-    //meter3
-    //var character10 = new Image();character10.src = "sprites/meter3.png";
+// meter1
+// var character8 = new Image();character8.src = "sprites/meter1.png";
+// meter2
+// var character9 = new Image();character9.src = "sprites/meter2.png";
+// meter3
+// var character10 = new Image();character10.src = "sprites/meter1.png";
     
 //labels
 var character11 = new Image();character11.src = "sprites/selectorLabel.png";
@@ -224,9 +226,9 @@ setTimeout(function (){//Shows sprites on first refresh of page
     ctx.drawImage(character7,0,0, widthB, heightB, greenLight3X, greenLight3Y, buttonScale, buttonScale); 
     //meters
     //can be used in future projects if necessary 
-    //ctx.drawImage(character8,0,0, character8.naturalWidth, character8.naturalHeight, 60, 0, 125, 70); 
-   // ctx.drawImage(character9,0,0, character9.naturalWidth, character9.naturalHeight, 310, 0, 125, 70); 
-   // ctx.drawImage(character10,0,0, character10.naturalWidth, character10.naturalHeight, 560, 0, 125, 70); 
+    // ctx2.drawImage(character8,0,0, character8.naturalWidth, character8.naturalHeight, 60, 0, 125, 70); 
+    // ctx2.drawImage(character9,0,0, character9.naturalWidth, character9.naturalHeight, 310, 0, 125, 70); 
+    // ctx2.drawImage(character10,0,0, character10.naturalWidth, character10.naturalHeight, 560, 0, 125, 70); 
     // //labels
     ctx.drawImage(character11,0,0, character11.naturalWidth, character11.naturalHeight, 0, 175, 93.75, 52.5); 
     ctx.drawImage(character12,0,0, character12.naturalWidth, character12.naturalHeight, 145, 100, 93.75, 52.5); 
@@ -363,80 +365,82 @@ function getCoor(event) {
     }
     else if ((x > lockout1PosX && x < lockout1PosX + scaleWidth) && (y > lockout1PosY && y < lockout1PosY + scaleHeight))
     {
+        
+        b_286_1.close();
         //if left lock sprite is clicked on
 
         // if (is blinking && not acknowledged)
         //     break;
-        if (b_286_1.is_Clickable() )
-        {
-        
-            if (currentframe1 % 2 == 1)
-            {   
-                openSwitch("lockout1");
-                blink1 = setInterval(drawLight, 250,"orange2");
-                b_286_1.blinking = 1;
-                b_286_1.set_State(true);
-                b_286_1.set_ClickableFalse();
-                //b_286_2.set_ClickableFalse();
-                
-                openSwitch("CSswitch1");
-                openSwitch("CSswitch3");
-                closeSwitch("CSswitch2");
+        // if ( b_286_1.is_Acknowledged() )
+        // {
             
-            }
-            else
-            {
-                b_286_1.set_State(false);
-                drawLight("orange2");
-                closeSwitch("lockout1");
-                closeSwitch("CSswitch1")
+        //     if (currentframe1 % 2 == 1)
+        //     {   
+        //         openSwitch("lockout1");
+        //         blink1 = setInterval(drawLight, 250,"orange2");
+        //         b_286_1.blinking = 1;
+        //         b_286_1.set_State(true);
+        //         b_286_1.set_ClickableFalse();
+        //         //b_286_2.set_ClickableFalse();
                 
-            }
+        //         openSwitch("CSswitch1"); b_252_1.update(SS.get_State(),true);
+        //         openSwitch("CSswitch3"); b_252_8.update(SS.get_State(),true);
+        //         closeSwitch("CSswitch2");b_252_2.update(SS.get_State(),false);
+            
+        //     }
+        //     else
+        //     {
+        //         b_286_1.set_State(false);
+        //         drawLight("orange2");
+        //         closeSwitch("lockout1");
+        //         closeSwitch("CSswitch1"); b_252_1.update(SS.get_State(),false);
+                
+        //     }
         
-        //if(lockout acknowledged)
-        //  {
-            //clearInterval(blink1);
-            //orange2frame = 0;
-            //drawLight("orange2");
-        //}
+        // //if(lockout acknowledged)
+        // //  {
+        //     //clearInterval(blink1);
+        //     //orange2frame = 0;
+        //     //drawLight("orange2");
+        // //}
         
         
-        }
+        // }
     }
     else if ((x > lockout2PosX && x < lockout2PosX + scaleWidth) && (y > lockout2PosY && y < lockout2PosY + scaleHeight))
     {
+        b_286_2.close();
         //if right lock sprite is clicked on
 
-        if (b_286_2.is_Clickable() )
-        {
-    
-            if (currentframe2 % 2 == 1)
-            {
-                openSwitch("lockout2");
-                blink2 = setInterval(drawLight, 250,"orange3");
-                b_286_2.blinking = 1;
-                b_286_2.set_State(true);
-                b_286_2.set_ClickableFalse();
-                //b_286_1.set_ClickableFalse();
-                openSwitch("CSswitch2");
-                openSwitch("CSswitch3");
-                closeSwitch("CSswitch1");
-            }
-            else
-            {
-                b_286_2.set_State(false);
-                drawLight("orange3");
-                closeSwitch("lockout2");
-                closeSwitch("CSswitch2")
-            }
-            //if(lockout acknowledged)
-            //  {
-                //clearInterval(blink2);
-                //orange3frame = 0;
-                //drawLight("orange3");
-            //}
+        // if (b_286_2.is_Clickable() )
+        // {
+        //     if (currentframe2 % 2 == 1)
+        //     {
+        //         openSwitch("lockout2");
+        //         blink2 = setInterval(drawLight, 250,"orange3");
+        //         b_286_2.blinking = 1;
+        //         b_286_2.set_State(true);
+        //         b_286_2.set_ClickableFalse();
+        //         //b_286_1.set_ClickableFalse();
+        //         openSwitch("CSswitch2"); 
+        //         openSwitch("CSswitch3");
+        //         closeSwitch("CSswitch1");
+        //     }
+        //     else
+        //     {
+        //         b_286_2.set_State(false);
+        //         drawLight("orange3");
+        //         closeSwitch("lockout2");
+        //         closeSwitch("CSswitch2")
+        //     }
+        //     //if(lockout acknowledged)
+        //     //  {
+        //         //clearInterval(blink2);
+        //         //orange3frame = 0;
+        //         //drawLight("orange3");
+        //     //}
            
-        }
+        // }
     }
     else if ((x > controlSwitch1X && x < controlSwitch1X + scaleWidthCS) && (y > controlSwitch1Y && y < controlSwitch1Y + scaleHeightCS))
     {
@@ -652,14 +656,13 @@ function updateFrameControlSwitch(xcoor,name){
         case "switch1":
             if (SS.is_Remote())
             {
-                b_252_1.update(CS.get_State(),false);
+                b_252_1.update(SS.get_State(),false);
                 break;
             }
             ctx.clearRect(controlSwitch1X,controlSwitch1Y, scaleWidthCS, scaleHeightCS);
             if (xcoor < (controlSwitch1X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch1");
-                b_252_1.set_Input_Voltage(40);
                 b_252_1.update(SS.get_State(),true);
             }
             else
@@ -679,7 +682,6 @@ function updateFrameControlSwitch(xcoor,name){
             if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch2");
-                b_252_2.set_Input_Voltage(20);
                 b_252_2.update(SS.get_State(), true);
             }
             else

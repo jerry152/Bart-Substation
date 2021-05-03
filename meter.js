@@ -1,5 +1,4 @@
-var meterWidth = 200;
-var meterHeight = 100;
+
 
 var meter = document.getElementById('Meter');
 
