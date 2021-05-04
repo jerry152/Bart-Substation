@@ -254,8 +254,8 @@ setTimeout(function (){//Shows sprites on first refresh of page
    // ctx.drawImage(character33,0,0, character33.naturalWidth, character33.naturalHeight, 161, 516, 412, 58); 
 
     //transformers
-    ctx.drawImage(character29,0,0, character29.naturalWidth, character29.naturalHeight, 215, 200, 200, 300); 
-    ctx.drawImage(character30,0,0, character30.naturalWidth, character30.naturalHeight, 371, 200, 200, 300); 
+    ctx.drawImage(character29,0,0, character29.naturalWidth, character29.naturalHeight, 209, 200, 212, 303); 
+    ctx.drawImage(character30,0,0, character30.naturalWidth, character30.naturalHeight, 366, 200, 212, 303); 
 
     //DC Sprites
         //CS
