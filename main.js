@@ -1,2 +1,2 @@
-//setTimeout(display,1000);
+// setTimeout(display,1000);
 
