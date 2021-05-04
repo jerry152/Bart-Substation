@@ -115,15 +115,6 @@ var character24 = new Image();character24.src = "sprites/cableLabel2.png";
 var character25 = new Image();character25.src = "sprites/cableLabel3.png";
 
 //connecting breaker features 
-<<<<<<< HEAD
-var character30 = new Image();character30.src = "sprites/topLeftCable.png";
-var character31 = new Image();character31.src = "sprites/topRightCable.png";
-var character32 = new Image();character32.src = "sprites/bottomCable1.png";
-var character33 = new Image();character33.src = "sprites/figureH.png";
-//transformerss
-var character34 = new Image();character34.src = "sprites/leftTransformer.png";
-var character35 = new Image();character35.src = "sprites/rightTransformer.png";
-=======
 var character26 = new Image();character26.src = "sprites/topLeftCable.png";
 var character27 = new Image();character27.src = "sprites/topRightCable.png";
 var character28 = new Image();character28.src = "sprites/bottomCables.png";
@@ -131,7 +122,6 @@ var character28 = new Image();character28.src = "sprites/bottomCables.png";
 //transformers
 var character29 = new Image();character29.src = "sprites/leftTransformer.png";
 var character30 = new Image();character30.src = "sprites/rightTransformer.png";
->>>>>>> d3ac71532898ce5af8dbecf0506169d0e243b0f8
 ////changable locations of AC sprites
 //lockout
 var lockout1PosX = 0;var lockout1PosY = 250;
