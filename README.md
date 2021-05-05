@@ -28,7 +28,11 @@ The CO2 control panel gives the new hires at BART the ability to simulate variou
 ---
 
 ### Installation
-The web application can be accessed through the HTML file include in the folder. If accessing the code from Visual Studio Code the Live Server extension package will have to be added to reference libraries.This will allow the user to open the app in a web browser.
+The web application can be accessed through the HTML file include in the folder. If accessing the code from Visual Studio Code the Live Server extension package will have to be added to reference libraries.This will allow the user to open the app in a web browser. 
+
+Download [Visual Studio Code](https://code.visualstudio.com/download)
+
+Download [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 
 ---
 ## How to use
