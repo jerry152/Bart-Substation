@@ -159,50 +159,43 @@ class Control_Switch extends AC_Properties {
         this.trip();
     }
     
-    update( SelectorState, state ) {
+    update( SelectorState, StateUpdate, InputType ) {
         if( SelectorState ) {
-            alert( "Cant do that, im in remote!" );
-            alert( SS.get_State_Name() );
-        } 
-        else {
-
-            //alert( "Local!" );
-
-            //managed to update
-
-            //Backcode do updates
-            if(state) { //open
-                // check input/output to see if there is an over/under currents
-                this.trip();
-
-                if( this.get_Output_Voltage() > this.get_Max_Voltage() ) {
-                    // We have an over current
-                    // alert("Overcurrent reading on " + String(this.num));
-
+            //Remote Logic
+            //When in REMOTE condition all local commands are blocked, except OPEN commands
+            if(InputType) {
+                //At the Panel 
+                if(StateUpdate) {
                     this.trip();
-
-
-
-                } else {
-                    if( this.get_Output_Voltage() < 30 ) { // Temp Undercurrent Value
-                        // We have an over current Undercurrent
-                        // alert("Undercurrent!")
-                        this.trip();
-                                            
-                    }
                 }
             } else {
-                // State change 
-                this.close();
+                //Command
+                if(StateUpdate) { // Trip Breaker
+                    this.trip();
+                } else { // Close Breaker
+                    this.close();
+                }
             }
 
-            //alert("Breaker" + String(this.num))
-            //Send Updates to adjacent modules
-            //alert( "Breaker" + String(this.num) + " input " + String(this.get_Input_Voltage()) + "; out" + String(this.get_Output_Voltage()) );
-            //Frontend methods to send 
-            
 
+        } 
+        else {
+            //Local Logic
+            //When in LOCAL condition all remote commands are blocked, except OPEN commands
 
+            if(InputType) {
+                //At the Panel 
+                if(StateUpdate) {
+                    this.trip();
+                } else {
+                    this.close();
+                }
+            } else {
+                //Command
+                if(StateUpdate) { // Trip Breaker
+                    this.trip();
+                }
+            }
         }
     }
 }
@@ -327,136 +320,6 @@ class Lockout_Relay {
     }
 }
 
-
-class Lockout_286_1 extends Lockout_Relay{
-    constructor(number, state){
-    super();
-        this.state = false;
-        this.number = number;
-        this.blinking = 0;
-        
-    }
-
-    get_State(){
-        if(this.state && b_286_2.state(false)){
-            //  this.trip();
-            alert("Lockout 286_1 Opened")
-            b_252_1.update(SS.get_State(), true);
-            b_252_8.update(SS.get_State(), true);
-            b_252_2.update(SS.get_State(), false);
-
-        }
-
-        if(b_252_1.get_Output_Voltage() < 30 || b_252_8.get_Output_Voltage() < 30 ){
-
-            clearInterval(blink2);
-            b_286_2.blinking = 0;
-            b_286_2.set_ClickableTrue();
-            b_286_1.set_ClickableTrue();
-            orange3frame = 0;
-            drawLight("orange3");
-
-            }
-        
-        else{
-            alert("186 Relay is not open or 286_2 must be closed first!")
-        }
-
-    }
-
-
-    update(acknowledged,state){
-
-        if(acknowledged){
-
-            
-
-            clearInterval(blink1);
-            b_286_1.blinking = 0;
-            b_286_1.set_ClickableTrue();
-            b_286_2.set_ClickableTrue();
-            orange2frame = 0;
-            drawLight("orange2");
-
-            
-
-        }
-
-        else{
-            alert("Nothing");
-            
-        }
-
-
-    }
-
-  
-
-
-
-}
-
-
-class Lockout_286_2 extends Lockout_Relay{
-
-    constructor(number,state){
-    
-       super();
-       this.state = false;
-       this.number = number;
-       this.blinking = 0;
-    }
-
-    get_State(){
-        if(this.state){
-            alert("Lockout 286_2 Opened");
-            b_252_1.update(SS.get_State(), false);
-            b_252_2.update(SS.get_State(), true);
-            b_252_8.update(SS.get_State(), true);
-
-        }
-        else{
-            alert("186 Relay is not open")
-        }
-
-        if(b_252_2.get_Output_Voltage() < 30 || b_252_8.get_Output_Voltage() < 30 ){
-
-            clearInterval(blink2);
-            b_286_2.blinking = 0;
-            b_286_2.set_ClickableTrue();
-            b_286_1.set_ClickableTrue();
-            orange3frame = 0;
-            drawLight("orange3");
-
-            }
-
-
-    }
-
-
-    update(acknowledged,state){
-
-        if(acknowledged){
-          
-            clearInterval(blink2);
-            b_286_2.blinking = 0;
-            b_286_2.set_ClickableTrue();
-            b_286_1.set_ClickableTrue();
-            orange3frame = 0;
-            drawLight("orange3");
-        }
-
-        else{
-            alert("Nothing");
-        }
-
-
-    }
-    
-   
-
-    
-}
 
 //=======================================================================================
 

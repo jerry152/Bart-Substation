@@ -656,44 +656,44 @@ function updateFrameControlSwitch(xcoor,name){
         case "switch1":
             if (SS.is_Remote())
             {
-                b_252_1.update(SS.get_State(),false);
+                b_252_1.update(SS.get_State(),false, true);
                 break;
             }
             ctx.clearRect(controlSwitch1X,controlSwitch1Y, scaleWidthCS, scaleHeightCS);
             if (xcoor < (controlSwitch1X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch1");
-                b_252_1.update(SS.get_State(),true);
+                b_252_1.update(SS.get_State(),true, true);
             }
             else
             {
                 closeSwitch("CSswitch1");
-                b_252_1.update(SS.get_State(),false);
+                b_252_1.update(SS.get_State(),false, true);
                 
             }
             break;
         
         case "switch2":
             if(SS.is_Remote()){
-                b_252_2.update(CS.get_State(),false);
+                b_252_2.update(CS.get_State(),false, true);
                 break;
             }
             ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
             if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch2");
-                b_252_2.update(SS.get_State(), true);
+                b_252_2.update(SS.get_State(), true, true);
             }
             else
             {
                 closeSwitch("CSswitch2");
-                b_252_2.update(SS.get_State(), false);
+                b_252_2.update(SS.get_State(), false, true);
             }
             break;
 
         case "switch3":
             if(SS.is_Remote()){
-                b_252_8.update(CS.get_State(),false);
+                b_252_8.update(CS.get_State(),false, true);
                 break;
             }
 
@@ -701,12 +701,12 @@ function updateFrameControlSwitch(xcoor,name){
             if (xcoor < (controlSwitch3X + (scaleWidthCS / 2)))
             {
                 openSwitch("CSswitch3");
-                b_252_8.update(SS.get_State(), true);
+                b_252_8.update(SS.get_State(), true, true);
             }
             else
             {
                 closeSwitch("CSswitch3");
-                b_252_8.update(SS.get_State(), false);
+                b_252_8.update(SS.get_State(), false, true);
             }
             break;
     }
