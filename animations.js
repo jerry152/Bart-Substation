@@ -212,8 +212,8 @@ setTimeout(function (){//Shows sprites on first refresh of page
     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);
     //orange
     ctx.drawImage(character6,0,0, widthB, heightB, orangeLight1X, orangeLight1Y, buttonScale, buttonScale);
-    ctx.drawImage(character6,0,0, widthB, heightB, orangeLight2X, orangeLight2Y, buttonScale, buttonScale);
-    ctx.drawImage(character6,0,0, widthB, heightB, orangeLight3X, orangeLight3Y, buttonScale, buttonScale);
+    ctx.drawImage(character4,0,0, widthB, heightB, orangeLight2X, orangeLight2Y, buttonScale, buttonScale);
+    ctx.drawImage(character4,0,0, widthB, heightB, orangeLight3X, orangeLight3Y, buttonScale, buttonScale);
     //red
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight1X, redLight1Y, buttonScale, buttonScale); 
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight2X, redLight2Y, buttonScale, buttonScale); 
