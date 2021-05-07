@@ -211,15 +211,15 @@ setTimeout(function (){//Shows sprites on first refresh of page
     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);
     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);
     //orange
-    ctx.drawImage(character4,0,0, widthB, heightB, orangeLight1X, orangeLight1Y, buttonScale, buttonScale);
-    ctx.drawImage(character4,0,0, widthB, heightB, orangeLight2X, orangeLight2Y, buttonScale, buttonScale);
-    ctx.drawImage(character4,0,0, widthB, heightB, orangeLight3X, orangeLight3Y, buttonScale, buttonScale);
+    ctx.drawImage(character6,0,0, widthB, heightB, orangeLight1X, orangeLight1Y, buttonScale, buttonScale);
+    ctx.drawImage(character6,0,0, widthB, heightB, orangeLight2X, orangeLight2Y, buttonScale, buttonScale);
+    ctx.drawImage(character6,0,0, widthB, heightB, orangeLight3X, orangeLight3Y, buttonScale, buttonScale);
     //red
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight1X, redLight1Y, buttonScale, buttonScale); 
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight2X, redLight2Y, buttonScale, buttonScale); 
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight3X, redLight3Y, buttonScale, buttonScale); 
     //blue
-    ctx.drawImage(character6,buttonWidth/2,0, widthB, heightB, blueLightX, blueLightY, buttonScale, buttonScale); 
+    ctx.drawImage(character4,buttonWidth/2,0, widthB, heightB, blueLightX, blueLightY, buttonScale, buttonScale); 
     //green
     ctx.drawImage(character7,0,0, widthB, heightB, greenLight1X, greenLight1Y, buttonScale, buttonScale); 
     ctx.drawImage(character7,0,0, widthB, heightB, greenLight2X, greenLight2Y, buttonScale, buttonScale); 
@@ -269,7 +269,7 @@ setTimeout(function (){//Shows sprites on first refresh of page
     ctx.drawImage(character,sheetWidth1/2,0, width, height, lockout3PosX, lockout3PosY, scaleWidth, scaleHeight);
         //lights
             //orange
-    ctx.drawImage(character4,0,0, widthB, heightB, orangeLight4X, orangeLight4Y, buttonScale, buttonScale);
+    ctx.drawImage(character6,0,0, widthB, heightB, orangeLight4X, orangeLight4Y, buttonScale, buttonScale);
     ctx.drawImage(character4,0,0, widthB, heightB, orangeLight5X, orangeLight5Y, buttonScale, buttonScale);
             //green
     ctx.drawImage(character7,0,0, widthB, heightB, greenLight4X, greenLight4Y, buttonScale, buttonScale); 
@@ -282,7 +282,7 @@ setTimeout(function (){//Shows sprites on first refresh of page
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight7X, redLight7Y, buttonScale, buttonScale); 
     ctx.drawImage(character5,buttonWidth/2,0, widthB, heightB, redLight8X, redLight8Y, buttonScale, buttonScale); 
             //blue
-    ctx.drawImage(character6,buttonWidth/2,0, widthB, heightB, blueLight2X, blueLight2Y, buttonScale, buttonScale);
+    ctx.drawImage(character4,buttonWidth/2,0, widthB, heightB, blueLight2X, blueLight2Y, buttonScale, buttonScale);
     
     //cabe lines to connect breaker and the lines 
     ctx.beginPath();
@@ -520,8 +520,8 @@ function drawLight(light){
     updateLight(light);
     switch(light){
         case "orange1":
-            ctx.drawImage(character4,srcxOrangeLight,0, widthB, heightB, orangeLight1X, orangeLight1Y, buttonScale, buttonScale);
-            ctx.drawImage(character6,srcxBlueLight,0,widthB,heightB,blueLightX,blueLightY,buttonScale,buttonScale);
+            ctx.drawImage(character6,srcxOrangeLight,0, widthB, heightB, orangeLight1X, orangeLight1Y, buttonScale, buttonScale);
+            ctx.drawImage(character4,srcxBlueLight,0,widthB,heightB,blueLightX,blueLightY,buttonScale,buttonScale);
             break;
         
         case "orange2":
