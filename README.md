@@ -41,6 +41,9 @@ Download [Live Server Extension](https://marketplace.visualstudio.com/items?item
 3.) Test the CO2 control panel with different situations
 
 ### Demo
+
+Live Demo can be accessed [here](https://bit.ly/3enVJUA)
+
 ---![](https://i.imgur.com/UskM4tx.gif)
 
 
