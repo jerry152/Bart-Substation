@@ -1,9 +1,17 @@
 .accordion-body{
   background-color: #e3f2fd
 }
-.accordion-header{
+.accordion-button{
   background-color: #e3f2fd
 }
+.navbar-brand{
+  color: #1E90FF
+}
+strong{
+    color: #1E90FF
+}
+
+/* #e3f2fd */
 
 body {
     font-family: Helvetica, sans-serif;
@@ -17,6 +25,7 @@ h2 {
 }
 p {
   color: black;
+  font-size: 15px;
 }
 
 .col-lg-8{

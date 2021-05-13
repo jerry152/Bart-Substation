@@ -91,14 +91,13 @@
     <!--Navibar-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top"style="background-color: #e3f2fd;">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">BART (TPSS) CO2 Control Panel Software Model</a>
+              <a class="navbar-brand" href="#"><strong>(TPSS) CO2 Control Panel Software Model</strong></a>
               <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       BART Links
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Link1</a></li>
-                      <li><a class="dropdown-item" href="#">Link2</a></li>
+                      <li><a class="dropdown-item" href="https://www.bart.gov/">BART Website</a></li>
                     </ul>
                   </li>
             </div>
@@ -150,12 +149,38 @@
                         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" >
                             <div class="accordion-body" id = "accordion-body2">
                                 <div class="form-group">
-                                    <label for="command">COMMAND:</label>
+                                    <label for="command"><b>COMMAND:</b></label>
                                     <input type="text" class="form-control" id="command">
                                     <button type="button" id=remoteinputbtn class="btn btn-primary btn-lg">Send Command</button>
-                                    <p> Here are some example of commands </p>
-                                    <p> V_252_1_Close_CMD </p>
-                                    <p> V_252_1_Open_CMD </p>
+                                    <p> Command List </p>
+                                    <hr>
+                                        
+                                        <p>Control Switches
+                                        </p>
+                                        <hr>
+                                        <p>
+                                        V_252_1_Open_CMD<br>
+                                        V_252_1_Close_CMD<br>
+                                        V_252_2_Open_CMD<br>
+                                        V_252_2_Close_CMD<br>
+                                        V_252_8_Open_CMD<br>
+                                        V_252_8_Close_CMD
+                                        </p>
+                                        <hr>
+                                        <p>
+                                        Selector Switch&emsp;
+                                        </p>
+                                        <hr>
+                                        <p>
+                                        V_243_1_Remote_CMD&emsp;
+                                        </p>
+                                        <p>
+                                        V_243_1_Local_CMD&emsp;
+                                        </p>
+                                        
+                                        
+                                        
+                                    
 
                                 </div>
                             </div>
@@ -168,9 +193,9 @@
                         </h2>
                         <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" >
                             <div class="accordion-body" id = "accordion-body3">
-                                <button type="button" id=overcurrent01 class="btn btn-primary btn-lg" >Overcurrent 252-01</button> <br>
-                                <button type="button" id=undervoltage01 class="btn btn-primary btn-lg">Undervoltage 252-01</button> <br>
-                                <button type="button" id=overcurrent02 class="btn btn-primary btn-lg" >Overcurrent 252-02</button> <br>
+                                <button type="button" id=overcurrent01 class="btn btn-primary btn-lg" >Overcurrent 252-01</button> 
+                                <button type="button" id=undervoltage01 class="btn btn-primary btn-lg">Undervoltage 252-01</button> 
+                                <button type="button" id=overcurrent02 class="btn btn-primary btn-lg" >Overcurrent 252-02</button> 
                                 <button type="button" id=undervoltage02 class="btn btn-primary btn-lg">Undervoltage 252-02</button>
                                 <button type="button" id=enclosureAlive class="btn btn-primary btn-lg">DC Enclosure Alive</button>
 
