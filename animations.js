@@ -10,12 +10,12 @@ var ctx = canvas.getContext('2d');
 
 
 //locates current desired sprite on sprite sheet
-var srcxControlSwitch1;
-var srcxControlSwitch2;
-var srcxControlSwitch3;
-var srcxLockoutRelay1;
-var srcxLockoutRelay2;
-var srcxSelector;
+var srcxControlSwitch1; // Not USED remove?
+var srcxControlSwitch2; // Not Used Remove?
+var srcxControlSwitch3; // Not Used Remove?
+var srcxLockoutRelay1; // Not Used Remove?
+var srcxLockoutRelay2; // Not Used Remove?
+var srcxSelector; // Not Used Remove?
 var srcxOrangeLight;
 var srcxBlueLight;
 var srcxRedLight;
@@ -52,7 +52,7 @@ var scaleHeightCS = heightCS / 4;
 
 var buttonScale = 15;
 //used to iterate through frames
-var currentframe1 = 1;
+var currentframe1 = 1; 
 var currentframe2 = 1;
 var currentframe3 = 0;
 var orange1frame = 0;
@@ -360,7 +360,7 @@ function getCoor(event) {
             closeSwitch("selector");
         }
         SS.swap_State();
-        alert( SS.get_State_Name() );
+        // alert( SS.get_State_Name() );
         drawLight("orange1");
     }
     else if ((x > lockout1PosX && x < lockout1PosX + scaleWidth) && (y > lockout1PosY && y < lockout1PosY + scaleHeight))
@@ -446,6 +446,13 @@ function getCoor(event) {
         //if controlswitch sprite is clicked on
         if (!b_286_1.state && !b_286_2.state && !(b_252_1.state && b_252_2.state))
             updateFrameControlSwitch(x,"switch3");
+    }
+
+    else if((x > lockout3PosX && x < lockout3PosX + scaleWidthCS) && (y > lockout3PosY && y < lockout3PosY + scaleHeightCS))
+    {
+        b_286_2.close();
+        b_286_1.close();
+
     }
 }
     //based on desired light, this clears the desired sprite and updates frame # to
@@ -561,6 +568,7 @@ function closeSwitch(name){
                     drawLight("lockout1");
                 }
                 //off position 
+                ctx.clearRect(controlSwitch1X,controlSwitch1Y, scaleWidthCS, scaleHeightCS);
                 ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);
                 //delay 500ms then neutral position.
                 setTimeout(function flicker(){
@@ -570,6 +578,7 @@ function closeSwitch(name){
                 if(red2frame!=1){
                     drawLight("lockout2");
                 }
+                ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
                 ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);
                 setTimeout(function flicker(){
                     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);},500);
@@ -579,6 +588,7 @@ function closeSwitch(name){
                 if(red3frame!=1){
                     drawLight("lockout3");
                 }
+                ctx.clearRect(controlSwitch3X,controlSwitch3Y, scaleWidthCS, scaleHeightCS);
                 ctx.drawImage(character3,sheetWidth2 * .66,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);
                 setTimeout(function flicker(){
                     ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);},500);
@@ -611,6 +621,7 @@ function openSwitch(name){
                 drawLight("lockout1");
             }
             //on position
+            ctx.clearRect(controlSwitch1X,controlSwitch1Y, scaleWidthCS, scaleHeightCS);
             ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch1X, controlSwitch1Y, scaleWidthCS, scaleHeightCS);
             //then delay 500ms then neutral position
             setTimeout(function flicker(){
@@ -620,6 +631,7 @@ function openSwitch(name){
             if(green2frame!=1){
                 drawLight("lockout2");
             }
+            ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
             ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);
             setTimeout(function flicker(){
                 ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch2X, controlSwitch2Y, scaleWidthCS, scaleHeightCS);},500);
@@ -629,6 +641,7 @@ function openSwitch(name){
             if(green3frame!=1){
                 drawLight("lockout3");
             }
+            ctx.clearRect(controlSwitch3X,controlSwitch3Y, scaleWidthCS, scaleHeightCS);
             ctx.drawImage(character3,0,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);
             setTimeout(function flicker(){
                 ctx.drawImage(character3,sheetWidth2/3,0, widthCS, heightCS, controlSwitch3X, controlSwitch3Y, scaleWidthCS, scaleHeightCS);},500);
@@ -642,16 +655,17 @@ function updateFrameControlSwitch(xcoor,name){
     switch(name){
 
         /* PseudoCode
+            case switch 1:
+                Send update command
+                    If there was an update then do the animations.
+                    How will I get the correct location to remove the previous
 
-        */
 
+        case "switch1":    
+            b_252_1.update();
 
-        case "switch1":
-            if (SS.is_Remote()) // This has to go - NO LOGIC IN ANIMATIONS
-            {
-                b_252_1.update(SS.get_State(),false, true);
-                break;
-            }
+            
+
             ctx.clearRect(controlSwitch1X,controlSwitch1Y, scaleWidthCS, scaleHeightCS);
             if (xcoor < (controlSwitch1X + (scaleWidthCS / 2)))
             {
@@ -665,40 +679,41 @@ function updateFrameControlSwitch(xcoor,name){
                 
             }
             break;
+        */
+
+
+        case "switch1":
+            
+            if (xcoor < (controlSwitch1X + (scaleWidthCS / 2)))
+            {
+                b_252_1.update(SS.get_State(),true, true);
+            }
+            else
+            {
+                b_252_1.update(SS.get_State(),false, true);
+                
+            }
+            break;
         
         case "switch2":
-            if(SS.is_Remote()){
-                b_252_2.update(CS.get_State(),false, true);
-                break;
-            }
-            ctx.clearRect(controlSwitch2X,controlSwitch2Y, scaleWidthCS, scaleHeightCS);
             if (xcoor < (controlSwitch2X + (scaleWidthCS / 2)))
             {
-                openSwitch("CSswitch2");
                 b_252_2.update(SS.get_State(), true, true);
             }
             else
             {
-                closeSwitch("CSswitch2");
                 b_252_2.update(SS.get_State(), false, true);
             }
             break;
 
         case "switch3":
-            if(SS.is_Remote()){
-                b_252_8.update(CS.get_State(),false, true);
-                break;
-            }
-
-            ctx.clearRect(controlSwitch3X,controlSwitch3Y, scaleWidthCS, scaleHeightCS);
+            
             if (xcoor < (controlSwitch3X + (scaleWidthCS / 2)))
             {
-                openSwitch("CSswitch3");
                 b_252_8.update(SS.get_State(), true, true);
             }
             else
             {
-                closeSwitch("CSswitch3");
                 b_252_8.update(SS.get_State(), false, true);
             }
             break;

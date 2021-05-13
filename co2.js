@@ -160,6 +160,7 @@ class Control_Switch extends AC_Properties {
     }
     
     update( SelectorState, StateUpdate, InputType ) {
+
         if( SelectorState ) {
             //Remote Logic
             //When in REMOTE condition all local commands are blocked, except OPEN commands
@@ -329,6 +330,7 @@ let b_252_8 = new Breaker_252("CLOSED" , 3);
 
 let b_286_1 = new Lockout_Relay(1);
 let b_286_2 = new Lockout_Relay(2);
+let b_286_3 = new Lockout_Relay(3);
 let SS = new Selector_Switch(false);
 //let CS = new Control_Switch(false);
 

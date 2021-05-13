@@ -77,6 +77,9 @@
                 underVoltageAlarm(2);
                 // Here goes the trigger for undervoltage
             })
+            $('#enclosureAlive').click(function(){
+                overCurrentAlarm(3);
+            })
             $('#remoteinputbtn').click(function() {
                 //alert( document.getElementById("command").value );
                 filter( document.getElementById("command").value );
@@ -134,10 +137,6 @@
                         <div id="collapseOne" class="collapse multi- collapse show" aria-labelledby="headingOne" >
                             <div class="accordion-body" id = "accordion-body1">
                                 <button type="button" id=acknowledge class="btn btn-primary btn-lg">Acknowledge</button>
-                                <!--Alerts-->
-                                <div class="alert alert-warning collapse" id= theAlert role="alert">
-                                    <strong>ALERT</strong> You have sent a Command.
-                                    
                                     <button type="button btn-lg" id=xbutton class="btn-close" aria-label="Close"></button>
                                 </div>
                             </div>
@@ -173,6 +172,8 @@
                                 <button type="button" id=undervoltage01 class="btn btn-primary btn-lg">Undervoltage 252-01</button> <br>
                                 <button type="button" id=overcurrent02 class="btn btn-primary btn-lg" >Overcurrent 252-02</button> <br>
                                 <button type="button" id=undervoltage02 class="btn btn-primary btn-lg">Undervoltage 252-02</button>
+                                <button type="button" id=enclosureAlive class="btn btn-primary btn-lg">DC Enclosure Alive</button>
+
                             </div>
                         </div>
 
