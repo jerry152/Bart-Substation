@@ -414,19 +414,6 @@ function getCoor(event) {
 
         // if (b_286_2.is_Clickable() )
         // {
-        //     if (currentframe2 % 2 == 1)
-        //     {
-        //         openSwitch("lockout2");
-        //         blink2 = setInterval(drawLight, 250,"orange3");
-        //         b_286_2.blinking = 1;
-        //         b_286_2.set_State(true);
-        //         b_286_2.set_ClickableFalse();
-        //         //b_286_1.set_ClickableFalse();
-        //         openSwitch("CSswitch2"); 
-        //         openSwitch("CSswitch3");
-        //         closeSwitch("CSswitch1");
-        //     }
-        //     else
         //     {
         //         b_286_2.set_State(false);
         //         drawLight("orange3");
@@ -653,8 +640,14 @@ function openSwitch(name){
 function updateFrameControlSwitch(xcoor,name){
     //checks if left side of sprite or right side is clicked on
     switch(name){
+
+        /* PseudoCode
+
+        */
+
+
         case "switch1":
-            if (SS.is_Remote())
+            if (SS.is_Remote()) // This has to go - NO LOGIC IN ANIMATIONS
             {
                 b_252_1.update(SS.get_State(),false, true);
                 break;

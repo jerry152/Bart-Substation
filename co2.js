@@ -301,16 +301,16 @@ class Lockout_Relay {
                 case 1:
                     drawLight("orange2");
                     closeSwitch("lockout1");
-                    b_252_1.close();
-                    closeSwitch("CSswitch1"); 
+                    // b_252_1.close();
+                    // closeSwitch("CSswitch1"); 
                     b_252_8.close();
                     closeSwitch("CSswitch3");
                     break;
                 case 2:
                     drawLight("orange3");
                     closeSwitch("lockout2");
-                    b_252_2.close();
-                    closeSwitch("CSswitch2"); 
+                    // b_252_2.close();
+                    // closeSwitch("CSswitch2"); 
                     b_252_8.close();
                     closeSwitch("CSswitch3");
                     break;
