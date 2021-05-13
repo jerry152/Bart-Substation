@@ -147,6 +147,8 @@ class Control_Switch extends AC_Properties {
                 //Activate Right Lockout
                 b_286_2.trip();
                 break;
+            case 3:
+                b_286_3.trip();
             default:
                 break;
         }
@@ -291,6 +293,13 @@ class Lockout_Relay {
                 b_252_8.trip();
                 b_252_1.close();
                 break;
+            case 3:
+                b_286_1.trip();
+                b_286_2.trip();
+                blink3 = setInterval(drawLight,250,"orange4");
+                this.blinking = 1;
+                this.set_state(true);
+                this.set_Acknowledged(false);
         }
     }
 
@@ -345,7 +354,11 @@ function overCurrentAlarm(num) {
             break;
         case 2:
             b_252_2.overCurrent();
-        break;
+            break;
+        case 3:
+            b_252_1.overCurrent();
+            b_252_2.overCurrent();
+            break;
         default:
             alert("Invalid breaker Number");
     }

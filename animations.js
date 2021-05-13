@@ -58,6 +58,7 @@ var currentframe3 = 0;
 var orange1frame = 0;
 var orange2frame = 0;
 var orange3frame = 0;
+var orange4frame = 0;
 var blue1frame = 1;
 var green1frame = 0;
 var green2frame = 0;
@@ -480,6 +481,12 @@ function updateLight(light){
             ctx.clearRect(orangeLight3X,orangeLight3Y,buttonScale,buttonScale);
             break;
 
+        case "orange4":
+            orange4frame = ++orange4frame % cols;
+            srcxOrangeLight = orange4frame * widthB;
+            ctx.clearRect(orangeLight5X,orangeLight5Y,buttonScale,buttonScale);
+            break;
+
         case "lockout1":
             green1frame = ++green1frame % cols;
             srcxGreenLight = green1frame * widthB;
@@ -525,7 +532,11 @@ function drawLight(light){
         case "orange3":
             ctx.drawImage(character4,srcxOrangeLight,0, widthB, heightB, orangeLight3X, orangeLight3Y, buttonScale, buttonScale);
             break;
-        
+
+        case "orange4":
+            ctx.drawImage(character4,srcxOrangeLight,0,widthB,heightB,orangeLight5X, orangeLight5Y, buttonScale,buttonScale);
+            break;
+            
         case "lockout1":
             ctx.drawImage(character7,srcxGreenLight,0, widthB, heightB, greenLight1X, greenLight1Y, buttonScale, buttonScale);
             ctx.drawImage(character5,srcxRedLight,0,widthB,heightB,redLight1X,redLight1Y,buttonScale,buttonScale);
