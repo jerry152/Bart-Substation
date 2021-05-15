@@ -78,16 +78,69 @@ We attempted to develop this app to be seperated into two major javascripts file
 
 #### 3.1.2 Major animations.js functions:
 
-##### 3.1.2.1 closeSwitch( name )
+##### 3.1.2.1 closeSwitch()
     closeSwitch(name) { 
         ....
     }
 
 * Depending on the variable “name”, this function chooses what close animation to play.
+##### 3.1.2.2 openSwitch()
+    openSwitch(name) {
+    ...
+    }
+* Depending on the variable “name”, this function chooses what open animation to play.
+##### 3.1.2.3 getCoor()
+    getCoor(event) {
+    ...
+    }
+* The “event” variable refers to the user clicking the canvas which in turn, getCoor will get the coordinates of location clicked and determine which switch is clicked on.
+ ##### 3.1.2.4 update()
+    update(light) {
+    ...
+    }
+* Depending on the variable “light”, this function determines which light to update animation information on.
+##### 3.1.2.5 drawLight()
+    drawLight(light) {
+    ...
+    }
+* This function calls updateLight() and then based on the variable “light”, displays the correct light animation.
 
-        
+### 3.2 Backend Structure (co2.js)
+#### 3.2.1 Major c02.js Features
+##### 3.2.1.1 AC_Properties
+    class AC_Properties() {
+        constructor() {
+            ...
+        }
+    }
+* This class takes care of obtaining AC Breaker Properties which can get inputs and set I/O operations.
 
-## Contributors
+##### 3.2.1.2 Control Switch
+    class Control_Swithc extends AC_Properties {
+        constructor(state, num) {
+            ...
+        }
+    }
+* This class inherits all properties from the AC_Properties class and permits the initalization of the breaker and saves its breaker tag number
+* This class contains all update logics which Frontend inputs use these commands to determine the outcome of the current state.
+
+##### 3.2.1.3 Selector Switch
+    class Selector_Switch {
+        constructor(state) {
+            ...
+        }
+    }
+* The selector Switch class takes care of saving inputs and obtaining useful data about the SS state as well as update funtions.
+
+##### 3.2.1.4 Lockout Relay
+    class Lockout_Relay {
+        constructor(number) {
+            ...
+        }
+    }
+* The Lockout Relay class permits the developer to keep tract of the LR status as well as the acknowledgement and contains the logic required to lock all breakers during a lockout-X Alarm.
+
+## 4. Contributors
 
 - Irma Gonzalez Padilla
 - Austin Chan
